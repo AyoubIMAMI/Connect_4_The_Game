@@ -3,8 +3,8 @@ const http = require('http')
 // Let's import our logic.
 const fileQuery = require('./queryManagers/front.js')
 const apiQuery = require('./queryManagers/api.js')
-const aiQuery = require('./logic/ai.js')
-const aiAdvancedQuery = require('./logic/aiMC.js')
+const aiQuery = require('./logic/weakAI.js')
+const aiAdvancedQuery = require('./logic/strongAI.js')
 const gameManagementQuery= require('./queryManagers/game/gameManagement')
 
 

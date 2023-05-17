@@ -31,4 +31,4 @@ A folder `back/logic` has been created to handle the business logic of your webs
 
 You're free to use it, move it, or not. You decide the architecture.
 
-For now, it only contains an `ai.js` file with a function that can play a (~random) connect4 move.
+For now, it only contains an `weakAI.js` file with a function that can play a (~random) connect4 move.

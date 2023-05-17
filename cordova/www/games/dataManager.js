@@ -13,7 +13,7 @@
 const local = "http://localhost:80";
 const aws = "http://4quarts.connect4.academy:80";
 const brut = "http://15.236.190.187:80";
-export const address = brut;
+export const address = local;
 export const ioAddress = (address === brut || address === aws) ? "ws://15.236.190.187" : "ws://localhost";
 export var token;
 
