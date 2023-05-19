@@ -38,13 +38,13 @@ async function loginInDataBase(response,currentUser,collectionName) {
         if(newItem === null)
             throw new TypeError("No user with this ID!");
         response.writeHead(200, {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token});
-        response.end(JSON.stringify(newItem));
+        response.end(newItem);
         console.log("THIS IS THE TOKEN:"+token);
 
     } catch (err) {
         console.error('Failed to create database or user', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'failure' }));
+        response.end({ status: 'failure' });
     } finally {
         await client.close();
     }
@@ -68,18 +68,18 @@ async function createInDataBase(response,valueToFind,collectionName,verifValue) 
         const item = await collection.findOne(verifValue);
         if (item!=null) {
             response.writeHead(200, {'Content-Type': 'application/json'});
-            response.end(JSON.stringify({status: 'failure'}));
+            response.end({status: 'failure'});
         }
         else{
             const result = await collection.insertOne(valueToFind);
             console.log('Document inserted', result.insertedId);
             response.writeHead(200, {'Content-Type': 'application/json'});
-            response.end(JSON.stringify({ status: 'success' }));
+            response.end({ status: 'success' });
         }
     } catch (err) {
         console.error('Failed to create database or user', err);
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'failure' }));
+        response.end({ status: 'failure' });
     } finally {
         await client.close();
     }
@@ -103,11 +103,11 @@ async function findEverythingInDataBase(response,valueToFind,collectionName){
         const items = await collection.find(valueToFind).toArray();
         console.log(items);
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify(items));
+        response.end(items);
     } catch (err) {
         console.error('Failed to create database or user', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'failure' }));
+        response.end({ status: 'failure' });
     } finally {
         await client.close();
     }
@@ -134,7 +134,7 @@ async function  friendRequest(response, requestFrom, valueToInsert) {
 
         // user not found security
         if (friendItem === null) {
-            response.end(JSON.stringify({ status: 'User not found' }));
+            response.end({ status: 'User not found' });
             return;
         }
 
@@ -167,12 +167,12 @@ async function  friendRequest(response, requestFrom, valueToInsert) {
 
         // response
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'success' }));
+        response.end({ status: 'success' });
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -200,12 +200,12 @@ async function retrieveFriendList(response, requestFrom) {
 
         // answer the data
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify(userFriends));
+        response.end(userFriends);
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -236,7 +236,7 @@ async function retrieveAllStats(response, requestFrom,friendName){
         }else{
             if(!userRequest.friends.includes(friendName)){
                 response.writeHead(404, {'Content-Type': 'application/json'});
-                response.end(JSON.stringify({status: 'failure'}));
+                response.end({status: 'failure'});
                 return;
             }
             user = await collection.findOne({username: friendName});
@@ -250,12 +250,12 @@ async function retrieveAllStats(response, requestFrom,friendName){
 
         // answer the data
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({eloPlayer: userElo, wins: userWins, losses: userLosses, draws: userDraws, nbFriends: nbFriends}));
+        response.end({eloPlayer: userElo, wins: userWins, losses: userLosses, draws: userDraws, nbFriends: nbFriends});
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -305,12 +305,12 @@ async function removeFriend(response, requestFrom, friendToRemove) {
 
         // response
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'success' }));
+        response.end({ status: 'success' });
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -339,12 +339,12 @@ async function retrieveFriendRequest(response, requestFrom) {
 
         // answer the data
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify(userFriendRequests));
+        response.end(userFriendRequests);
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -405,12 +405,12 @@ async function  acceptFriendRequest(response, requestFrom, friendToAccept) {
 
         // response
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'success' }));
+        response.end({ status: 'success' });
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -460,12 +460,12 @@ async function  declineFriendRequest(response, requestFrom, friendToDecline) {
 
         // response
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({ status: 'success' }));
+        response.end({ status: 'success' });
 
     } catch (err) {
         console.error('Token not found', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -522,11 +522,11 @@ async function retrieveGames(response, body) {
         const item = await collection.findOne({token: body.token});
         console.log("THE TOKEN: " + body.token);
         console.log("THE ITEM: " + item.toString());
-        response.end(JSON.stringify({userReel: item != null}));
+        response.end({userReel: item != null});
     } catch (err) {
         console.error('Failed to create database or user', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -549,11 +549,11 @@ async function retrieveGamesWithId(response, body) {
         let games = (await gameCollection.find({userID: item._id}).toArray());
         games = games.filter(game => game._id.toString() === body.id);
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify(games[0]));
+        response.end(games[0]);
     } catch (e) {
         console.error('Failed to create database or user', e);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
@@ -578,11 +578,11 @@ async function deleteAllGames(response, body) {
         const result = await gameCollection.deleteMany({userID: item._id});
         console.log("Document deleted", result.deletedCount);
         response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'success'}));
+        response.end({status: 'success'});
     } catch (err) {
         console.error('Failed to delete the game', err);
         response.writeHead(400, {'Content-Type': 'application/json'});
-        response.end(JSON.stringify({status: 'failure'}));
+        response.end({status: 'failure'});
     } finally {
         await client.close();
     }
