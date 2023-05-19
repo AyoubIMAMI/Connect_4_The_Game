@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../mongoDBConnection");
+const mongoDBConnection = require("../mongoDBConnection.js");
 
 /**
  * This function manages the request to the Game API
