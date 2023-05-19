@@ -15,10 +15,9 @@ function manageRequest(request, response) {
             });
 
             request.on('end', function () {
-                let currentUser=JSON.parse(body);
                 let userInfo={
-                    username: currentUser.username,
-                    password: hashFunction.hash(currentUser.password),
+                    username: body.username,
+                    password: hashFunction.hash(body.password),
                 }
                 mongoDBConnection.findInDataBase(response,userInfo,"log");
             });

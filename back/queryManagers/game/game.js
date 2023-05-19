@@ -20,37 +20,32 @@ function manageRequest(request, response) {
 
         if (filePath[3] == null) {
             request.on('end', function () {
-                const bodyParsed = JSON.parse(body);
-                mongoDBConnection.createGame(response, bodyParsed).then(() => console.log("create game"));
+                mongoDBConnection.createGame(response, body).then(() => console.log("create game"));
             });
         }
 
         else if (filePath[3] === "retrieveGames") {
             request.on('end', function () {
-                const bodyParsed = JSON.parse(body);
-                mongoDBConnection.findAllGames(response, bodyParsed).then(() => console.log("retrieveGames"));
+                mongoDBConnection.findAllGames(response, body).then(() => console.log("retrieveGames"));
             });
         }
 
         else if (filePath[3] === "verifToken") {
             request.on('end', function () {
-                const bodyParsed = JSON.parse(body);
-                mongoDBConnection.retrieveGames(response, bodyParsed).then(() => console.log("verifyToken"));
+                mongoDBConnection.retrieveGames(response, body).then(() => console.log("verifyToken"));
             });
 
         }
 
         else if (filePath[3] === "retrieveGameWithId") {
             request.on('end', function () {
-                const bodyParsed = JSON.parse(body);
-                mongoDBConnection.retrieveGamesWithId(response, bodyParsed).then(() => console.log("retrieveGamesWithId"));
+                mongoDBConnection.retrieveGamesWithId(response, body).then(() => console.log("retrieveGamesWithId"));
             });
         }
 
         else if (filePath[3] === "deleteGame") {
             request.on('end', function () {
-                const bodyParsed = JSON.parse(body);
-                mongoDBConnection.deleteAllGames(response, bodyParsed).then(() => console.log("deleteGame"));
+                mongoDBConnection.deleteAllGames(response, body).then(() => console.log("deleteGame"));
             });
         }
     }

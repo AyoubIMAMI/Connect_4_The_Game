@@ -471,21 +471,21 @@ async function  declineFriendRequest(response, requestFrom, friendToDecline) {
     }
 }
 
-async function createGame(response, bodyParsed) {
+async function createGame(response, body) {
     await client.connect();
     const db = client.db("connect4");
 
     const collection = db.collection("log");
-    console.log(bodyParsed);
-    const item = await collection.findOne({token: bodyParsed.userToken});
+    console.log(body);
+    const item = await collection.findOne({token: body.userToken});
     if (item === null)
         throw new TypeError("No user with this ID!");
     console.log("THIS IS ITEM");
     console.log(item);
     const tab = {
-        gameType: bodyParsed.gameType,
-        name: bodyParsed.name,
-        tab: bodyParsed.tab,
+        gameType: body.gameType,
+        name: body.name,
+        tab: body.tab,
         userID: item._id
     };
     console.log("THIS IS TAB:")
@@ -493,14 +493,14 @@ async function createGame(response, bodyParsed) {
     await createInDataBase(response, tab, "games", tab);
 }
 
-async function findAllGames(response, bodyParsed) {
+async function findAllGames(response, body) {
     await client.connect();
     const db = client.db("connect4");
 
     const collection = db.collection("log");
-    console.log(bodyParsed);
-    console.log(bodyParsed.token);
-    const item = await collection.findOne({token: bodyParsed.token});
+    console.log(body);
+    console.log(body.token);
+    const item = await collection.findOne({token: body.token});
 
     console.log(item);
 
@@ -510,17 +510,17 @@ async function findAllGames(response, bodyParsed) {
     await findEverythingInDataBase(response, {userID: item._id}, "games");
 }
 
-async function retrieveGames(response, bodyParsed) {
+async function retrieveGames(response, body) {
     try {
         console.log("retrieveGameWithId")
         await client.connect();
-        console.log(bodyParsed);
+        console.log(body);
         console.log('Connected to MongoDB');
         const db = client.db("connect4");
 
         const collection = db.collection("log");
-        const item = await collection.findOne({token: bodyParsed.token});
-        console.log("THE TOKEN: " + bodyParsed.token);
+        const item = await collection.findOne({token: body.token});
+        console.log("THE TOKEN: " + body.token);
         console.log("THE ITEM: " + item.toString());
         response.end(JSON.stringify({userReel: item != null}));
     } catch (err) {
@@ -532,22 +532,22 @@ async function retrieveGames(response, bodyParsed) {
     }
 }
 
-async function retrieveGamesWithId(response, bodyParsed) {
+async function retrieveGamesWithId(response, body) {
     try {
         console.log("retrieveGameWithId")
         await client.connect();
-        console.log(bodyParsed);
+        console.log(body);
         console.log('Connected to MongoDB');
         const db = client.db("connect4");
 
         const gameCollection = db.collection("games");
 
         const collection = db.collection("log");
-        const item = await collection.findOne({token: bodyParsed.token});
+        const item = await collection.findOne({token: body.token});
         if (item === null)
             throw new TypeError("No user with this ID!");
         let games = (await gameCollection.find({userID: item._id}).toArray());
-        games = games.filter(game => game._id.toString() === bodyParsed.id);
+        games = games.filter(game => game._id.toString() === body.id);
         response.writeHead(200, {'Content-Type': 'application/json'});
         response.end(JSON.stringify(games[0]));
     } catch (e) {
@@ -559,22 +559,22 @@ async function retrieveGamesWithId(response, bodyParsed) {
     }
 }
 
-async function deleteAllGames(response, bodyParsed) {
+async function deleteAllGames(response, body) {
     try {
         console.log("deleteOneGame")
         await client.connect();
-        console.log(bodyParsed);
+        console.log(body);
         console.log('Connected to MongoDB');
         const db = client.db("connect4");
         const gameCollection = db.collection("games");
 
 
         const collection = db.collection("log");
-        const item = await collection.findOne({token: bodyParsed.token});
+        const item = await collection.findOne({token: body.token});
         if (item === null)
             throw new TypeError("No user with this ID!");
 
-        console.log("bodyParsed.token: ", bodyParsed.token);
+        console.log("bodyParsed.token: ", body.token);
         const result = await gameCollection.deleteMany({userID: item._id});
         console.log("Document deleted", result.deletedCount);
         response.writeHead(200, {'Content-Type': 'application/json'});

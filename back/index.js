@@ -55,17 +55,14 @@ io.on('connection',socket => {
     console.log("Connected");
 
     socket.on('play',(state) => {
-        let gameState = JSON.parse(state);
-        io.to(gameState.id).emit('doMove',JSON.stringify(aiQuery.computeMove(gameState)));
+        io.to(state.id).emit('doMove',JSON.stringify(aiQuery.computeMove(state)));
     });
 
     socket.on('playAdv',async (state) => {
-        let gameState = JSON.parse(state);
-
-        let next = await aiAdvancedQuery.TestNextMove(gameState.pos);
-        console.log("gamestate id "+gameState.id);
+        let next = await aiAdvancedQuery.TestNextMove(state.pos);
+        console.log("gamestate id "+state.id);
         console.log(next);
-        io.to(gameState.id).emit('doMove', JSON.stringify(next));
+        io.to(state.id).emit('doMove', JSON.stringify(next));
     });
 
     socket.on('initAdv',(initState) => {

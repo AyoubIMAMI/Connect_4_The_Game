@@ -30,10 +30,9 @@ function manageRequest(request, response) {
         });
 
         request.on('end', function () {
-            const values = JSON.parse(body);
-            const valueToInsert={username:values.username,
-                password:hash(values.password),
-                email:values.email,
+            const valueToInsert={username:body.username,
+                password:hash(body.password),
+                email:body.email,
                 token:generate_token(32),
                 friends: [],
                 requestSent: [],
@@ -43,8 +42,8 @@ function manageRequest(request, response) {
                 losses: 0,
                 draws: 0,
             }
-            const valueToCheck={username:values.username,
-                password:hash(values.password),
+            const valueToCheck={username:body.username,
+                password:hash(body.password),
                 }
             mongoDBConnection.createInDataBase(response,valueToInsert,"log",valueToCheck);
         });

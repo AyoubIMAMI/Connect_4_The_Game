@@ -16,8 +16,7 @@ function manageRequest(request, response) {
         });
         if (filePath[3] === "retrieveAllStats") {
             request.on('end', function () {
-                const values = JSON.parse(body);
-                mongoDBConnection.retrieveAllStats(response, values.token, values.friendName);
+                mongoDBConnection.retrieveAllStats(response, body.token, body.friendName);
             });
         }
         else {
