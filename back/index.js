@@ -5,7 +5,7 @@ const fileQuery = require('./queryManagers/front.js')
 const apiQuery = require('./queryManagers/api.js')
 const aiQuery = require('./logic/weakAI.js')
 const aiAdvancedQuery = require('./logic/strongAI.js')
-const gameManagementQuery= require('./queryManagers/game/gameManagement')
+const gameManagementQuery= require('./queryManagers/game/socketManager')
 
 
 /* The http module contains a createServer function, which takes one argument, which is the function that

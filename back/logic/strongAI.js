@@ -1,4 +1,4 @@
-let gameManager = require("gameManager.js")
+let gameManager = require("back/queryManagers/game/gameManager.js")
 
 /**
  * Strong AI that choose a column using a Monte Carlo like algorithm.
@@ -46,15 +46,7 @@ function setup(aiPlays) {
  * Reset the board.
  */
 function resetBoard() {
-    board = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-    ];
+    board = gameManager.createBoard();
 }
 
 /**

@@ -1,3 +1,4 @@
+const {ObjectId: ObjectID} = require("mongodb");
 
 const MongoClient = require('mongodb').MongoClient;
 //url to connect to the database
@@ -587,6 +588,189 @@ async function deleteAllGames(response, bodyParsed) {
     }
 }
 
+/**
+ * This function retrieves the user from the database
+ * @param token the token of the user
+ * @returns {Promise<Document & {_id: InferIdType<Document>}>}
+ */
+async function retrieveUserFromDataBase(token){
+    await client.connect();
+    const db = client.db("connect4");
+    const gameCollection = db.collection("games");
+
+    const collection = db.collection("log");
+    const item = await collection.findOne({token:token});
+    return item;
+}
+
+/**
+ * This function retrieves the user from the database by name
+ * @param name the name of the user
+ * @returns {Promise<Document & {_id: InferIdType<Document>}>}
+ */
+async function retrieveUserFromDataBaseByName(name){
+    await client.connect();
+    const db = client.db("connect4");
+    const collection = db.collection("log");
+    let user = await collection.findOne({username: name});
+    return user;
+}
+
+/**
+ * This function add a message to the database between two users
+ * @param from the user who sent the message
+ * @param to the user who received the message
+ * @param message the message
+ * @param heReads if the user has read the message
+ * @returns {Promise<InsertOneResult<Document>>}
+ */
+async function saveMessageToDataBase(from,to,message,heReads){
+    await client.connect();
+    const db = client.db("connect4");
+    const chatCollection = db.collection("chat");
+    const item = await chatCollection.insertOne({from:from,to:to,message:message,heReads:heReads});
+    return item;
+}
+
+/**
+ * this function load all the messages to a user
+ * @param to the user who received the message
+ * @returns {Promise<WithId<Document>[]>}
+ */
+async function loadAllMessagePending(to){
+    await client.connect();
+    console.log('Connected to MongoDB');
+    const db = client.db("connect4");
+    const chatCollection = db.collection("chat");
+    const item = await chatCollection.find({to:to,heReads:false}).toArray();
+    return item;
+}
+
+/**
+ * load all the messages from a user to another
+ * @param from the user who sent the message
+ * @param to the user who received the message
+ * @returns {Promise<WithId<Document>[]>}
+ */
+async function loadAllMessageFromConversation(from,to){
+    await client.connect();
+    console.log('Connected to MongoDB');
+    const db = client.db("connect4");
+    const chatCollection = db.collection("chat");
+    console.log("updating: from "+from+" to "+to);
+    await chatCollection.updateMany({from:from,to: to}, {$set: {heReads: true}});
+    if (findSocketByName(to,connectedSockets)===null)
+        return [];
+    findSocketByName(to,connectedSockets).emit('loadAllMessagePending', await loadAllMessagePending(to));
+    const item = await chatCollection.find({ $or:[{from:from,to:to},{from:to,to:from}]}).toArray();
+    return item;
+}
+
+/**
+ * add a win to the user in the database if he wins
+ * @param requestFrom the user who won
+ * @returns {Promise<void>}
+ */
+async function addWins(requestFrom){
+    const collectionName = "log";
+    try {
+        await client.connect();
+        const db = client.db("connect4");
+        const collection = db.collection(collectionName);
+        const user = await collection.findOne({username: requestFrom});
+        let userWins = user.wins + 1;
+        await collection.updateOne({username: requestFrom}, {$set: {wins: userWins}});
+    }
+    catch (err) {
+        console.error('Token not found', err);
+
+    }
+    finally {
+        await client.close();
+    }
+}
+
+/**
+ * add a loss to the user in the database if he loses
+ * @param requestFrom the user who lost
+ * @returns {Promise<void>}
+ */
+async function addLosses(requestFrom){
+    const collectionName = "log";
+    try {
+        console.log("ONE MORE LOST");
+        await client.connect();
+        const db = client.db("connect4");
+        const collection = db.collection(collectionName);
+        const user = await collection.findOne({username: requestFrom});
+        let userLosses = user.losses + 1;
+        await collection.updateOne({username: requestFrom}, {$set: {losses: userLosses}});
+    }
+    catch (err) {
+        console.error('Token not found', err);
+
+    }
+    finally {
+        await client.close();
+    }
+}
+
+/**
+ * add a draw to the user in the database if he draws
+ * @param requestFrom
+ * @returns {Promise<void>}
+ */
+async function addDraws(requestFrom){
+    const collectionName = "log";
+    try {
+        await client.connect();
+        const db = client.db("connect4");
+        const collection = db.collection(collectionName);
+        const user = await collection.findOne({username: requestFrom});
+        let userDraws = user.draws + 1;
+        await collection.updateOne({username: requestFrom}, {$set: {draws: userDraws}});
+    }
+    catch (err) {
+        console.error('Token not found', err);
+    }
+    finally {
+        await client.close();
+    }
+}
+
+/**
+ * update the elo of the user in the database after a game
+ * @param requestFrom
+ * @param elo the new elo
+ * @returns {Promise<void>}
+ */
+async function addElo(requestFrom, elo){
+    const collectionName = "log";
+    try {
+        await client.connect();
+        const db = client.db("connect4");
+        const collection = db.collection(collectionName);
+        await collection.updateOne({username: requestFrom}, {$set: {elo: elo}});
+    }
+    catch (err) {
+        console.error('Token not found', err);
+
+    }
+    finally {
+        await client.close();
+    }
+}
+
+async function updateSetToRead(request) {
+    await client.connect();
+    const db = client.db("connect4");
+    const chatCollection = db.collection("chat");
+    return await chatCollection.updateOne({
+        _id: new ObjectID(request.item.insertedId),
+        to: to.username
+    }, {$set: {heReads: true}});
+}
+
 // here we export all the functions to be used in other files
 exports.findInDataBase = loginInDataBase;
 exports.createInDataBase = createInDataBase;
@@ -605,3 +789,15 @@ exports.findAllGames = findAllGames;
 exports.retrieveGames = retrieveGames;
 exports.retrieveGamesWithId = retrieveGamesWithId;
 exports.deleteAllGames = deleteAllGames;
+
+exports.retrieveUserFromDataBase = retrieveUserFromDataBase;
+exports.retrieveUserFromDataBaseByName = retrieveUserFromDataBaseByName;
+exports.saveMessageToDataBase = saveMessageToDataBase;
+exports.loadAllMessagePending = loadAllMessagePending;
+exports.loadAllMessageFromConversation = loadAllMessageFromConversation;
+exports.addWins = addWins;
+exports.addLosses = addLosses;
+exports.addDraws = addDraws;
+exports.addElo = addElo;
+
+exports.updateSetToRead = updateSetToRead;
