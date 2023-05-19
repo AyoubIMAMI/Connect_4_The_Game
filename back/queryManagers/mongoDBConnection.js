@@ -470,7 +470,124 @@ async function  declineFriendRequest(response, requestFrom, friendToDecline) {
     }
 }
 
-// here we exports all the functions to be used in other files
+async function createGame(response, bodyParsed) {
+    await client.connect();
+    const db = client.db("connect4");
+
+    const collection = db.collection("log");
+    console.log(bodyParsed);
+    const item = await collection.findOne({token: bodyParsed.userToken});
+    if (item === null)
+        throw new TypeError("No user with this ID!");
+    console.log("THIS IS ITEM");
+    console.log(item);
+    const tab = {
+        gameType: bodyParsed.gameType,
+        name: bodyParsed.name,
+        tab: bodyParsed.tab,
+        userID: item._id
+    };
+    console.log("THIS IS TAB:")
+    console.log(tab);
+    await createInDataBase(response, tab, "games", tab);
+}
+
+async function findAllGames(response, bodyParsed) {
+    await client.connect();
+    const db = client.db("connect4");
+
+    const collection = db.collection("log");
+    console.log(bodyParsed);
+    console.log(bodyParsed.token);
+    const item = await collection.findOne({token: bodyParsed.token});
+
+    console.log(item);
+
+    if (item === null)
+        throw new TypeError("No user with this ID!");
+
+    await findEverythingInDataBase(response, {userID: item._id}, "games");
+}
+
+async function retrieveGames(response, bodyParsed) {
+    try {
+        console.log("retrieveGameWithId")
+        await client.connect();
+        console.log(bodyParsed);
+        console.log('Connected to MongoDB');
+        const db = client.db("connect4");
+
+        const collection = db.collection("log");
+        const item = await collection.findOne({token: bodyParsed.token});
+        console.log("THE TOKEN: " + bodyParsed.token);
+        console.log("THE ITEM: " + item.toString());
+        response.end(JSON.stringify({userReel: item != null}));
+    } catch (err) {
+        console.error('Failed to create database or user', err);
+        response.writeHead(400, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({status: 'failure'}));
+    } finally {
+        await client.close();
+    }
+}
+
+async function retrieveGamesWithId(response, bodyParsed) {
+    try {
+        console.log("retrieveGameWithId")
+        await client.connect();
+        console.log(bodyParsed);
+        console.log('Connected to MongoDB');
+        const db = client.db("connect4");
+
+        const gameCollection = db.collection("games");
+
+        const collection = db.collection("log");
+        const item = await collection.findOne({token: bodyParsed.token});
+        if (item === null)
+            throw new TypeError("No user with this ID!");
+        let games = (await gameCollection.find({userID: item._id}).toArray());
+        games = games.filter(game => game._id.toString() === bodyParsed.id);
+        response.writeHead(200, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify(games[0]));
+    } catch (e) {
+        console.error('Failed to create database or user', e);
+        response.writeHead(400, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({status: 'failure'}));
+    } finally {
+        await client.close();
+    }
+}
+
+async function deleteAllGames(response, bodyParsed) {
+    try {
+        console.log("deleteOneGame")
+        await client.connect();
+        console.log(bodyParsed);
+        console.log('Connected to MongoDB');
+        const db = client.db("connect4");
+        const gameCollection = db.collection("games");
+
+
+        const collection = db.collection("log");
+        const item = await collection.findOne({token: bodyParsed.token});
+        if (item === null)
+            throw new TypeError("No user with this ID!");
+
+        console.log("bodyParsed.token: ", bodyParsed.token);
+        const result = await gameCollection.deleteMany({userID: item._id});
+        console.log("Document deleted", result.deletedCount);
+        response.writeHead(200, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({status: 'success'}));
+    } catch (err) {
+        console.error('Failed to delete the game', err);
+        response.writeHead(400, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({status: 'failure'}));
+    } finally {
+        await client.close();
+    }
+}
+
+// here we export all the functions to be used in other files
 exports.findInDataBase = loginInDataBase;
 exports.createInDataBase = createInDataBase;
 exports.findEverythingInDataBase = findEverythingInDataBase;
@@ -483,4 +600,8 @@ exports.acceptFriendRequest = acceptFriendRequest;
 exports.declineFriendRequest = declineFriendRequest;
 exports.retrieveAllStats = retrieveAllStats;
 
-
+exports.createGame = createGame;
+exports.findAllGames = findAllGames;
+exports.retrieveGames = retrieveGames;
+exports.retrieveGamesWithId = retrieveGamesWithId;
+exports.deleteAllGames = deleteAllGames;
