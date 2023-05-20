@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../databaseManager");
+const databaseManager = require("../databaseManager.js");
 
 /**
  * This function manages the request to the profile API
@@ -16,7 +16,7 @@ function manageRequest(request, response) {
         });
         if (filePath[3] === "retrieveAllStats") {
             request.on('end', function () {
-                mongoDBConnection.retrieveAllStats(response, body.token, body.friendName)
+                databaseManager.retrieveAllStats(response, body.token, body.friendName)
                     .then(() => console.log("Retrieving statistics from database"));
             });
         } else {

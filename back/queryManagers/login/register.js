@@ -1,4 +1,4 @@
-const mongoDBConnection = require('../databaseManager');
+const databaseManager = require('../databaseManager.js');
 const crypto = require("crypto");
 
 /**
@@ -47,7 +47,7 @@ function manageRequest(request, response) {
                 username: body.username,
                 password: hash(body.password),
             }
-            mongoDBConnection.createInDataBase(response, valueToInsert, "log", valueToCheck)
+            databaseManager.createInDataBase(response, valueToInsert, "log", valueToCheck)
                 .then(() => console.log("Saving data in database"));
         });
     } else {

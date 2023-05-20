@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../databaseManager.js");
+const databaseManager = require("../databaseManager.js");
 
 /**
  * Returns an array of legal moves on the board.
@@ -314,8 +314,8 @@ async function updateElo(gameInfo, didPlayer1Win, didPlayer2Win) {
     let delta1 = oldElo1 - newElo1;
     let delta2 = oldElo2 - newElo2;
 
-    await mongoDBConnection.addElo(gameInfo.player1.username, newElo1);
-    await mongoDBConnection.addElo(gameInfo.player2.username, newElo2);
+    await databaseManager.addElo(gameInfo.player1.username, newElo1);
+    await databaseManager.addElo(gameInfo.player2.username, newElo2);
 
     return {delta1: delta1, delta2: delta2};
 }

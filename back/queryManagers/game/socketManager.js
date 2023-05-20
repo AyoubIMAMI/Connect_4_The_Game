@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../databaseManager.js");
+const databaseManager = require("../databaseManager.js");
 const gameManager = require("gameManager.js");
 
 let roomInSearch = null;
@@ -65,7 +65,7 @@ function findSocketByName(name, connectedSockets) {
 
 function socketSearchMultiGame(socket, io) {
     socket.on('searchMultiGame', async (player) => {
-        let user = await mongoDBConnection.retrieveUserFromDataBase(player.token);
+        let user = await databaseManager.retrieveUserFromDataBase(player.token);
         let roomName = player.room;
 
         socket.join(roomName);
@@ -114,7 +114,7 @@ function socketSearchMultiGame(socket, io) {
 
 function socketCancelQueue(socket, io) {
     socket.on('cancelQueue', async (player) => {
-        let user = await mongoDBConnection.retrieveUserFromDataBase(player.token);
+        let user = await databaseManager.retrieveUserFromDataBase(player.token);
 
         if (roomInSearch != null && roomInSearch.userID === user._id.toString()) {
             let roomName = roomInSearch.room;
@@ -127,7 +127,7 @@ function socketCancelQueue(socket, io) {
 function socketInitMulti(socket, io) {
     socket.on('initMulti', async (request) => {
         let gameInfo = mapGames.get(request.matchID);
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
 
         if (user._id.toString() === gameInfo.player1.userID) {
             socket.join(gameInfo.player1.room);
@@ -156,7 +156,7 @@ function socketInitMulti(socket, io) {
 function socketChat(socket, io) {
     socket.on('chat', async (request) => {
         let gameInfo = mapGames.get(request.matchID);
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
 
         if (user._id.toString() === gameInfo.player1.userID) {
             io.to(gameInfo.player2.room).emit('message', {
@@ -175,8 +175,8 @@ function socketChat(socket, io) {
 function socketFriendChat(socket, connectedSockets) {
     socket.on('friendChat', async (request) => {
         let heReads = false;
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let item = await mongoDBConnection.saveMessageToDataBase(user.username, request.friendUsername, request.chat, heReads);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
+        let item = await databaseManager.saveMessageToDataBase(user.username, request.friendUsername, request.chat, heReads);
 
         if (findSocketByName(request.friendUsername, connectedSockets) !== null) {
             findSocketByName(request.friendUsername, connectedSockets).emit('privateMessage', {
@@ -190,27 +190,27 @@ function socketFriendChat(socket, connectedSockets) {
 
 function socketFindAllMessagePending(socket, connectedSockets) {
     socket.on('findAllMessagePending', async (request) => {
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let allUserMessages = await mongoDBConnection.loadAllMessagePending(user.username);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
+        let allUserMessages = await databaseManager.loadAllMessagePending(user.username);
         findSocketByName(user.username, connectedSockets).emit('loadAllMessagePending', allUserMessages);
     });
 }
 
 function socketLoadFriendChat(socket, connectedSockets) {
     socket.on('loadFriendChat', async (request) => {
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let allUserMessages = await mongoDBConnection.loadAllMessageFromConversation(request.friendUsername, user.username, connectedSockets);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
+        let allUserMessages = await databaseManager.loadAllMessageFromConversation(request.friendUsername, user.username, connectedSockets);
         findSocketByName(user.username, connectedSockets).emit('allConversationPrivateMessages', allUserMessages)
     });
 }
 
 function socketSetToRead(socket, connectedSockets) {
     socket.on('setToRead', async (request) => {
-        let to = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let updated = await mongoDBConnection.updateSetToRead(request, to);
+        let to = await databaseManager.retrieveUserFromDataBase(request.token);
+        let updated = await databaseManager.updateSetToRead(request, to);
 
         if (updated.modifiedCount > 0)
-            findSocketByName(to.username, connectedSockets).emit('loadAllMessagePending', mongoDBConnection.loadAllMessagePending(to));
+            findSocketByName(to.username, connectedSockets).emit('loadAllMessagePending', databaseManager.loadAllMessagePending(to));
     })
 }
 
@@ -218,7 +218,7 @@ function socketPlayMulti(socket, io) {
     socket.on('playMulti', async (request) => {
         let moveToCheck;
         let gameInfo = mapGames.get(request.matchID);
-        let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
+        let user = await databaseManager.retrieveUserFromDataBase(request.token);
 
         if (user._id.toString() === gameInfo.player1.userID && !gameManager.checkIllegalMove(gameInfo.board, request.pos[0], 1)) {
             gameInfo.board[request.pos[0]][request.pos[1]] = 1;
@@ -255,11 +255,11 @@ function socketPlayMulti(socket, io) {
                     let oldElo1 = gameInfo.player1.elo;
                     let oldElo2 = gameInfo.player2.elo;
                     let newElo1 = gameManager.calculateNewElo(gameInfo.player1.elo, gameInfo.player2.elo, 1)
-                    await mongoDBConnection.addElo(gameInfo.player1.username, newElo1);
-                    await mongoDBConnection.addWins(gameInfo.player1.username)
-                    await mongoDBConnection.addLosses(gameInfo.player2.username)
+                    await databaseManager.addElo(gameInfo.player1.username, newElo1);
+                    await databaseManager.addWins(gameInfo.player1.username)
+                    await databaseManager.addLosses(gameInfo.player2.username)
                     let newElo2 = gameManager.calculateNewElo(gameInfo.player2.elo, gameInfo.player1.elo, 0)
-                    await mongoDBConnection.addElo(gameInfo.player2.username, newElo2);
+                    await databaseManager.addElo(gameInfo.player2.username, newElo2);
                     let delta1 = newElo1 - oldElo1;
                     let delta2 = newElo2 - oldElo2;
                     io.to(gameInfo.player1.room).emit('win', delta1);
@@ -276,8 +276,8 @@ function socketPlayMulti(socket, io) {
                 io.to(gameInfo.player1.room).emit('stopTimer', null);
                 io.to(gameInfo.player2.room).emit('stopTimer', null);
 
-                await mongoDBConnection.addDraws(gameInfo.player1.username)
-                await mongoDBConnection.addDraws(gameInfo.player2.username)
+                await databaseManager.addDraws(gameInfo.player1.username)
+                await databaseManager.addDraws(gameInfo.player2.username)
             } else {
                 if (gameInfo.isFriendGame) {
                     io.to(gameInfo.player1.room).emit('lose', null);
@@ -289,11 +289,11 @@ function socketPlayMulti(socket, io) {
                     let oldElo1 = gameInfo.player1.elo;
                     let oldElo2 = gameInfo.player2.elo;
                     let newElo2 = gameManager.calculateNewElo(gameInfo.player2.elo, gameInfo.player1.elo, 1);
-                    await mongoDBConnection.addElo(gameInfo.player2.username, newElo2);
-                    await mongoDBConnection.addWins(gameInfo.player2.username)
-                    await mongoDBConnection.addLosses(gameInfo.player1.username)
+                    await databaseManager.addElo(gameInfo.player2.username, newElo2);
+                    await databaseManager.addWins(gameInfo.player2.username)
+                    await databaseManager.addLosses(gameInfo.player1.username)
                     let newElo1 = gameManager.calculateNewElo(gameInfo.player1.elo, gameInfo.player2.elo, 0)
-                    await mongoDBConnection.addElo(gameInfo.player1.username, newElo1);
+                    await databaseManager.addElo(gameInfo.player1.username, newElo1);
                     let delta1 = oldElo1 - newElo1;
                     let delta2 = oldElo2 - newElo2;
                     console.log("old elo " + oldElo1);
@@ -321,7 +321,7 @@ function socketTimeOver(socket, io) {
         playerStillInGameNumber++;
 
         if (playerStillInGameNumber < 2) {
-            let player = await mongoDBConnection.retrieveUserFromDataBase(data.token);
+            let player = await databaseManager.retrieveUserFromDataBase(data.token);
             if (player === null) return;
             let playerName = player.username;
 
@@ -368,13 +368,13 @@ function socketTimeOver(socket, io) {
                 let deltas = gameManager.updateElo(gameInfo, didPlayer1Win, didPlayer2Win);
 
                 if (didPlayer1Win === 1) {
-                    await mongoDBConnection.addWins(gameInfo.player1.username);
-                    await mongoDBConnection.addLosses(gameInfo.player2.username);
+                    await databaseManager.addWins(gameInfo.player1.username);
+                    await databaseManager.addLosses(gameInfo.player2.username);
                     io.to(losingPlayerRoom).emit('lose', deltas.delta2);
                     io.to(winningPlayerRoom).emit('win', deltas.delta1);
                 } else {
-                    await mongoDBConnection.addWins(gameInfo.player2.username);
-                    await mongoDBConnection.addLosses(gameInfo.player1.username);
+                    await databaseManager.addWins(gameInfo.player2.username);
+                    await databaseManager.addLosses(gameInfo.player1.username);
                     io.to(losingPlayerRoom).emit('lose', deltas.delta1);
                     io.to(winningPlayerRoom).emit('win', deltas.delta2);
                 }
@@ -386,7 +386,7 @@ function socketTimeOver(socket, io) {
 
 function socketSurrender(socket, io) {
     socket.on('surrender', async (data) => {
-        let surrenderedPlayer = await mongoDBConnection.retrieveUserFromDataBase(data.token);
+        let surrenderedPlayer = await databaseManager.retrieveUserFromDataBase(data.token);
         let surrenderedPlayerName = surrenderedPlayer.username;
 
         let gameInfo = mapGames.get(data.matchID);
@@ -421,16 +421,16 @@ function socketSurrender(socket, io) {
             let deltas = gameManager.updateElo(gameInfo, didPlayer1Win, didPlayer2Win);
 
             if (didPlayer1Win === 1) {
-                await mongoDBConnection.addWins(gameInfo.player1.username);
-                await mongoDBConnection.addLosses(gameInfo.player2.username);
+                await databaseManager.addWins(gameInfo.player1.username);
+                await databaseManager.addLosses(gameInfo.player2.username);
                 io.to(losingPlayerRoom).emit('lose', deltas.delta2);
                 io.to(winningPlayerRoom).emit('win', deltas.delta1);
 
                 io.to(gameInfo.player1.room).emit('stopTimer', null);
                 io.to(gameInfo.player2.room).emit('stopTimer', null);
             } else {
-                await mongoDBConnection.addWins(gameInfo.player2.username);
-                await mongoDBConnection.addLosses(gameInfo.player1.username);
+                await databaseManager.addWins(gameInfo.player2.username);
+                await databaseManager.addLosses(gameInfo.player1.username);
                 io.to(losingPlayerRoom).emit('lose', deltas.delta1);
                 io.to(winningPlayerRoom).emit('win', deltas.delta2);
 
@@ -444,7 +444,7 @@ function socketSurrender(socket, io) {
 function socketChallengeFriend(socket, connectedSockets) {
     socket.on('challengeFriend', async (request) => {
         let challengerToken = request.challengerToken;
-        let challenger = await mongoDBConnection.retrieveUserFromDataBase(challengerToken);
+        let challenger = await databaseManager.retrieveUserFromDataBase(challengerToken);
 
         let challengerName = challenger.username;
         let challengerSocket = findSocketByName(challengerName, connectedSockets);
@@ -469,11 +469,11 @@ function socketChallengeFriend(socket, connectedSockets) {
 function socketIAcceptTheChallenge(socket, io, connectedSockets) {
     socket.on('IAcceptTheChallenge', async (data) => {
         const challengerName = data.challengerName;
-        const challenger = await mongoDBConnection.retrieveUserFromDataBaseByName(challengerName);
+        const challenger = await databaseManager.retrieveUserFromDataBaseByName(challengerName);
         const challengerToken = challenger.token;
 
         const challengedToken = data.challengedToken;
-        const challenged = await mongoDBConnection.retrieveUserFromDataBase(challengedToken);
+        const challenged = await databaseManager.retrieveUserFromDataBase(challengedToken);
         if (challenged === null) return;
         const challengedName = challenged.username;
 
@@ -530,9 +530,9 @@ function socketGetPlayerNameToDisplay(socket) {
 function socketIDeclineTheChallenge(socket, connectedSockets) {
     socket.on('IDeclineTheChallenge', async (data) => {
         let challengerName = data.challengerName;
-        let challenger = await mongoDBConnection.retrieveUserFromDataBaseByName(challengerName);
+        let challenger = await databaseManager.retrieveUserFromDataBaseByName(challengerName);
         let challengedToken = data.challengedToken;
-        let challenged = await mongoDBConnection.retrieveUserFromDataBase(challengedToken);
+        let challenged = await databaseManager.retrieveUserFromDataBase(challengedToken);
         if (challenged === null) return;
         findSocketByName(challenger.username, connectedSockets).emit('challengeDeclined', challenged.username);
     })
@@ -541,7 +541,7 @@ function socketIDeclineTheChallenge(socket, connectedSockets) {
 function socketChallengeIsDeclined(socket, connectedSockets) {
     socket.on('theChallengeIsCanceled', async (data) => {
         let challengerToken = data.challengerToken;
-        let challenger = await mongoDBConnection.retrieveUserFromDataBase(challengerToken);
+        let challenger = await databaseManager.retrieveUserFromDataBase(challengerToken);
         if (challenger === null) return;
 
         let challengedName = data.challengedName;

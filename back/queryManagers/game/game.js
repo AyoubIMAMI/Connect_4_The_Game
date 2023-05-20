@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../databaseManager.js");
+const databaseManager = require("../databaseManager.js");
 
 /**
  * This function manages the request to the Game API
@@ -20,32 +20,32 @@ function manageRequest(request, response) {
 
         if (filePath[3] == null) {
             request.on('end', function () {
-                mongoDBConnection.createGame(response, body).then(() => console.log("create game"));
+                databaseManager.createGame(response, body).then(() => console.log("create game"));
             });
         }
 
         else if (filePath[3] === "retrieveGames") {
             request.on('end', function () {
-                mongoDBConnection.findAllGames(response, body).then(() => console.log("retrieveGames"));
+                databaseManager.findAllGames(response, body).then(() => console.log("retrieveGames"));
             });
         }
 
         else if (filePath[3] === "verifToken") {
             request.on('end', function () {
-                mongoDBConnection.retrieveGames(response, body).then(() => console.log("verifyToken"));
+                databaseManager.retrieveGames(response, body).then(() => console.log("verifyToken"));
             });
 
         }
 
         else if (filePath[3] === "retrieveGameWithId") {
             request.on('end', function () {
-                mongoDBConnection.retrieveGamesWithId(response, body).then(() => console.log("retrieveGamesWithId"));
+                databaseManager.retrieveGamesWithId(response, body).then(() => console.log("retrieveGamesWithId"));
             });
         }
 
         else if (filePath[3] === "deleteGame") {
             request.on('end', function () {
-                mongoDBConnection.deleteAllGames(response, body).then(() => console.log("deleteGame"));
+                databaseManager.deleteAllGames(response, body).then(() => console.log("deleteGame"));
             });
         }
     }

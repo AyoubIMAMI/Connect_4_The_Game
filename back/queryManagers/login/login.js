@@ -1,5 +1,5 @@
-const mongoDBConnection = require('../databaseManager');
-const hashFunction = require('./register')
+const databaseManager = require('../databaseManager.js');
+const hashFunction = require('./register.js')
 
 /**
  * This function manages the request to the login API
@@ -21,7 +21,7 @@ function manageRequest(request, response) {
                 username: body.username,
                 password: hashFunction.hash(body.password),
             }
-            mongoDBConnection.findInDataBase(response, userInfo, COLLECTION_NAME)
+            databaseManager.findInDataBase(response, userInfo, COLLECTION_NAME)
                 .then(() => console.log("Looking for user in database"));
         });
     } else {
