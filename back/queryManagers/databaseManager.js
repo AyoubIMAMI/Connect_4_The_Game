@@ -1,6 +1,7 @@
 const {ObjectId: ObjectID} = require("mongodb");
+const socketManager = require("./game/socketManager.js");
 const MongoClient = require('mongodb').MongoClient;
-const socketManager = require("game/socketManager.js");
+
 
 //url to connect to the database
 const url = 'mongodb://admin:admin@mongodb/admin?directConnection=true';

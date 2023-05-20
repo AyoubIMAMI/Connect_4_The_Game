@@ -1,5 +1,6 @@
 const databaseManager = require("../databaseManager.js");
-const gameManager = require("gameManager.js");
+const gameManager = require("./gameManager.js");
+
 
 let roomInSearch = null;
 const mapGames = new Map();

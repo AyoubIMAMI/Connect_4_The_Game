@@ -1,4 +1,4 @@
-let gameManager = require("back/queryManagers/game/gameManager.js")
+const gameManager = require("../queryManagers/game/gameManager.js");
 
 /**
  * Strong AI that choose a column using a Monte Carlo like algorithm.
