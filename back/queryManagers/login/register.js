@@ -6,12 +6,12 @@ const crypto = require("crypto");
  * @param length
  * @returns {string}
  */
-function generate_token(length){
+function generate_token(length) {
     //edit the token allowed characters
-    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-    var b = [];
-    for (var i=0; i<length; i++) {
-        var j = (Math.random() * (a.length-1)).toFixed(0);
+    const a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+    let b = [];
+    for (let i = 0; i < length; i++) {
+        let j = (Math.random() * (a.length - 1)).toFixed(0);
         b[i] = a[j];
     }
     return b.join("");
@@ -23,17 +23,18 @@ function generate_token(length){
  * @param response
  */
 function manageRequest(request, response) {
-    if (request.method==='POST'){
-        let body='';
+    if (request.method === 'POST') {
+        let body = '';
         request.on('data', function (data) {
             body += data;
         });
 
         request.on('end', function () {
-            const valueToInsert={username:body.username,
-                password:hash(body.password),
-                email:body.email,
-                token:generate_token(32),
+            const valueToInsert = {
+                username: body.username,
+                password: hash(body.password),
+                email: body.email,
+                token: generate_token(32),
                 friends: [],
                 requestSent: [],
                 requestReceived: [],
@@ -42,13 +43,14 @@ function manageRequest(request, response) {
                 losses: 0,
                 draws: 0,
             }
-            const valueToCheck={username:body.username,
-                password:hash(body.password),
-                }
-            mongoDBConnection.createInDataBase(response,valueToInsert,"log",valueToCheck);
+            const valueToCheck = {
+                username: body.username,
+                password: hash(body.password),
+            }
+            mongoDBConnection.createInDataBase(response, valueToInsert, "log", valueToCheck)
+                .then(() => console.log("Saving data in database"));
         });
-    }
-    else{
+    } else {
         response.statusCode = 400;
         response.end(`Something in your request (${request.url}) is strange...`);
     }
