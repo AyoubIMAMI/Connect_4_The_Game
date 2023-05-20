@@ -5,18 +5,18 @@ const fileQuery = require('./queryManagers/front.js')
 const apiQuery = require('./queryManagers/api.js')
 const aiQuery = require('./logic/weakAI.js')
 const aiAdvancedQuery = require('./logic/strongAI.js')
-const gameManagementQuery= require('./queryManagers/game/socketManager.js')
+const gameManagementQuery = require('./queryManagers/game/socketManager.js')
 
 
 /* The http module contains a createServer function, which takes one argument, which is the function that
  * will be called whenever a new request arrives to the server.
  */
 let server = http.createServer(function (request, response) {
-    apiQuery.addCors(request,response);
+    apiQuery.addCors(request, response);
 
     // First, let's check the URL to see if it's a REST request or a file request.
     // We will remove all cases of "../" in the url for security purposes.
-    let filePath = request.url.split("/").filter(function(elem) {
+    let filePath = request.url.split("/").filter(function (elem) {
         return elem !== "..";
     });
 
@@ -33,39 +33,39 @@ let server = http.createServer(function (request, response) {
         } else {
             fileQuery.manage(request, response);
         }
-    } catch(error) {
+    } catch (error) {
         console.log(`error while processing ${request.url}: ${error}`)
         response.statusCode = 400;
         response.end(`Something in your request (${request.url}) is strange... with error: ${error}`);
     }
 });
 
-const { Server } = require("socket.io");
+const {Server} = require("socket.io");
 const io = new Server(server, {
     cors: {
         origin: ["http://4quarts.connect4.academy", "http://15.236.190.187", "http://localhost"]
     }
 });
 
-io.on('connection',socket => {
+io.on('connection', socket => {
     socket.on('joinRoom', (roomName) => {
         socket.join(roomName);
         io.to(roomName).emit('updateRoom', roomName);
     });
     console.log("Connected");
 
-    socket.on('play',(state) => {
-        io.to(state.id).emit('doMove',aiQuery.computeMove(state));
+    socket.on('play', (state) => {
+        io.to(state.id).emit('doMove', aiQuery.computeMove(state));
     });
 
-    socket.on('playAdv',async (state) => {
+    socket.on('playAdv', async (state) => {
         let next = await aiAdvancedQuery.TestNextMove(state.pos);
-        console.log("gamestate id "+state.id);
+        console.log("gameState id " + state.id);
         console.log(next);
         io.to(state.id).emit('doMove', next);
     });
 
-    socket.on('initAdv',(initState) => {
+    socket.on('initAdv', (initState) => {
         aiAdvancedQuery.setup(initState);
     });
 })
