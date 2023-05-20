@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../mongoDBConnection.js");
+const mongoDBConnection = require("../databaseManager.js");
 const gameManager = require("gameManager.js");
 
 let roomInSearch = null;
@@ -199,7 +199,7 @@ function socketFindAllMessagePending(socket, connectedSockets) {
 function socketLoadFriendChat(socket, connectedSockets) {
     socket.on('loadFriendChat', async (request) => {
         let user = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let allUserMessages = await mongoDBConnection.loadAllMessageFromConversation(request.friendUsername, user.username);
+        let allUserMessages = await mongoDBConnection.loadAllMessageFromConversation(request.friendUsername, user.username, connectedSockets);
         findSocketByName(user.username, connectedSockets).emit('allConversationPrivateMessages', allUserMessages)
     });
 }
@@ -207,7 +207,7 @@ function socketLoadFriendChat(socket, connectedSockets) {
 function socketSetToRead(socket, connectedSockets) {
     socket.on('setToRead', async (request) => {
         let to = await mongoDBConnection.retrieveUserFromDataBase(request.token);
-        let updated = await mongoDBConnection.updateSetToRead();
+        let updated = await mongoDBConnection.updateSetToRead(request, to);
 
         if (updated.modifiedCount > 0)
             findSocketByName(to.username, connectedSockets).emit('loadAllMessagePending', mongoDBConnection.loadAllMessagePending(to));
@@ -554,3 +554,4 @@ function socketChallengeIsDeclined(socket, connectedSockets) {
 }
 
 exports.setUpSockets = setUpSockets;
+exports.findSocketByName = findSocketByName;

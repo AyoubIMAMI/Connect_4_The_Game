@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../mongoDBConnection");
+const mongoDBConnection = require("../databaseManager");
 
 /**
  * This function manages the request to the friends API

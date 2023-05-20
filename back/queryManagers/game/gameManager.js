@@ -1,4 +1,4 @@
-const mongoDBConnection = require("../mongoDBConnection.js");
+const mongoDBConnection = require("../databaseManager.js");
 
 /**
  * Returns an array of legal moves on the board.

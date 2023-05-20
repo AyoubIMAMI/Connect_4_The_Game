@@ -1,4 +1,4 @@
-const mongoDBConnection = require('../mongoDBConnection');
+const mongoDBConnection = require('../databaseManager');
 const hashFunction = require('./register')
 
 /**
