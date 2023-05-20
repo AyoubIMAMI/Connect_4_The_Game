@@ -159,9 +159,9 @@ function addGamesSavedHtml(tabOfGames){
 
     }
 }
-document.getElementById("profil").addEventListener('click', function () {
+document.getElementById("profile").addEventListener('click', function () {
     let username = findUsername();
-    window.location.href = '../profil/profil.html?name=' + username;
+    window.location.href = '../profile/profile.html?name=' + username;
 });
 
 function initialise(){

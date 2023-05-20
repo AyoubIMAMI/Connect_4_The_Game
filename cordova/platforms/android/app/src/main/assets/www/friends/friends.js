@@ -536,7 +536,7 @@ function showMiniFriendList(friendList) {
 
         dropdown.appendChild(newItem);
         document.getElementById(idProfil).addEventListener('click',function(){
-            window.location.href='/profil/profil.html?name='+friendList[i];
+            window.location.href='/profile/profile.html?name='+friendList[i];
         })
         document.getElementById(idDivFriend).addEventListener('click', function () {
             if (document.getElementById(idMiniFriendMenu).style.display === "flex")

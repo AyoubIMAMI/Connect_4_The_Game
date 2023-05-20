@@ -2,7 +2,7 @@ const apiLogin = require('./login/login.js')
 const apiRegister = require('./login/register.js')
 const apiGame = require('./game/game.js')
 const apiFriend = require('./friends/friends.js')
-const apiProfil = require('./profil/profil.js')
+const apiProfil = require('./profile/profile.js')
 
 // Main method, exported at the end of the file. It's the one that will be called when a REST request is received.
 function manageRequest(request, response) {
