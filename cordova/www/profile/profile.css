@@ -2,16 +2,19 @@
     font-family: retro;
     src: url(../ressources/font/retro.ttf);
 }
-.title{
+
+.title {
     height: 20%;
 }
-.parentMenu{
+
+.parentMenu {
     height: 100%;
 }
-@media only screen and (min-width: 600px) and (min-height: 600px){
+
+@media only screen and (min-width: 600px) and (min-height: 600px) {
     body {
         background-color: #f6ffd2;
-        font-family: retro;
+        font-family: retro, serif;
         font-size: 20px;
         zoom: 0.6;
         overflow: hidden;
@@ -19,14 +22,17 @@
         width: 100%;
         margin: 0;
     }
-    html{
+
+    html {
         height: 100%;
         width: 100%;
     }
+
     #stats-btn {
         display: none;
     }
-    #succes-btn{
+
+    #success-btn {
         display: none;
     }
 
@@ -108,7 +114,7 @@
         border-radius: 15px;
     }
 
-    #succes {
+    #success {
         height: 60%;
         margin: auto;
         border: 3px solid #99a37f36;
@@ -132,8 +138,9 @@
         color: #ff9900;
         display: inline-block;
     }
-    .bigWrapper{
-        box-shadow: 16px 16px 16px 16px rgba(0,0,0,0.2);
+
+    .bigWrapper {
+        box-shadow: 16px 16px 16px 16px rgba(0, 0, 0, 0.2);
     }
 
     #rankImage {
@@ -146,12 +153,12 @@
         border-radius: 50%;
         border: 3px solid #ff9900;
         box-shadow: 0 0 10px #ff9900;
-        vertical-align: middle; /* Ajout de la propriété vertical-align */
+        vertical-align: middle;
     }
 
     .progress-bar-inner {
         text-align: center;
-        width:0%;
+        width: 0;
     }
 
     #games-played, #wins, #losses, #draws {
@@ -160,7 +167,7 @@
         text-shadow: 1px 1px #ffffff;
     }
 
-    #winrate {
+    #winRate {
         font-weight: bold;
         color: #ff0000;
         text-shadow: 1px 1px #ffffff;
@@ -219,8 +226,9 @@
         height: 130vh;
         border-radius: 50%;
     }
+
     #stats {
-        margin:auto;
+        margin: auto;
         background-color: #918f7d69;
         padding: 15px;
         border-radius: 15px;
@@ -229,20 +237,13 @@
 }
 
 
-
-
-
-
-
-
-
-
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
     thead {
         color: black;
         width: 200%;
     }
-    .homepage{
+
+    .homepage {
         cursor: pointer;
         font-size: 12vw;
         background-color: rgb(76 168 184);
@@ -278,12 +279,12 @@
         border-radius: 50%;
         border: 3px solid #ff9900;
         box-shadow: 0 0 10vw #ff9900;
-        vertical-align: middle; /* Ajout de la propriété vertical-align */
+        vertical-align: middle;
     }
 
     .progress-bar-inner {
         text-align: center;
-        width: 0%;
+        width: 0;
     }
 
     #games-played, #wins, #losses, #draws {
@@ -292,7 +293,7 @@
         text-shadow: 1vw 1vw #ffffff;
     }
 
-    #winrate {
+    #winRate {
         font-weight: bold;
         color: #ff0000;
         text-shadow: 1vw 1vw #ffffff;
@@ -323,7 +324,7 @@
 
     body {
         background-color: #f6ffd2;
-        font-family: retro;
+        font-family: retro, serif;
         font-size: 5vw;
         zoom: 0.6;
         overflow-y: hidden;
@@ -400,7 +401,7 @@
         text-shadow: 1px 1px #ffffff;
     }
 
-    #succes {
+    #success {
         float: none;
         height: auto;
         margin: 0 auto;
@@ -421,7 +422,8 @@
         width: 100%;
         background-color: #ff8af278;
     }
-    .statsInterior{
+
+    .statsInterior {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -437,13 +439,14 @@
         justify-content: center;
         flex-direction: column;
     }
-    .btn{
+
+    .btn {
         border-top: 3px solid #99a37f36;
         display: flex;
         justify-content: flex-start;
         transition: width 0.3s;
         width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         height: 10%;
         font-size: 15vw;
         flex-wrap: wrap;
@@ -451,7 +454,7 @@
 
     .btn button {
         flex-basis: 50%;
-        font-family: retro;
+        font-family: retro, serif;
     }
 
     #stats-btn {
@@ -460,26 +463,17 @@
 
     }
 
-    #succes-btn {
+    #success-btn {
         background-color: #f0981994;
         font-size: 10vw;
 
     }
 
 
-
 }
 
 
-
-
-
-
-
-
-
-
-@media only screen and (max-height: 600px) and (min-width:500px) {
+@media only screen and (max-height: 600px) and (min-width: 500px) {
 
 
     thead {
@@ -487,7 +481,8 @@
         text-align: center;
         width: auto;
     }
-    .homepage{
+
+    .homepage {
         cursor: pointer;
         font-size: 12vh;
         background-color: rgb(76 168 184);
@@ -521,12 +516,12 @@
         border-radius: 50%;
         border: 3px solid #ff9900;
         box-shadow: 0 0 10vh #ff9900;
-        vertical-align: middle; /* Ajout de la propriété vertical-align */
+        vertical-align: middle;
     }
 
     .progress-bar-inner {
         text-align: center;
-        width: 0%;
+        width: 0;
     }
 
     #games-played, #wins, #losses, #draws {
@@ -535,7 +530,7 @@
         text-shadow: 1vh 1vh #ffffff;
     }
 
-    #winrate {
+    #winRate {
         font-weight: bold;
         color: #ff0000;
         text-shadow: 1vh 1vh #ffffff;
@@ -566,16 +561,18 @@
 
     body {
         background-color: #f6ffd2;
-        font-family: retro;
+        font-family: retro, serif;
         height: 100%;
         font-size: 5vh;
         zoom: 0.6;
         overflow-y: hidden;
     }
-    .parentMenu{
+
+    .parentMenu {
         height: 70%;
     }
-    .titleText{
+
+    .titleText {
         height: 10%;
     }
 
@@ -650,7 +647,7 @@
         text-shadow: 1px 1px #ffffff;
     }
 
-    #succes {
+    #success {
         display: none;
         width: 100%;
         float: none;
@@ -660,7 +657,8 @@
         background-color: #fe9e1363;
         align-items: center;
     }
-    .bigWrapper{
+
+    .bigWrapper {
         height: 90%;
     }
 
@@ -677,7 +675,8 @@
         width: 100%;
         background-color: #ff8af278;
     }
-    .statsInterior{
+
+    .statsInterior {
         width: 100%;
         align-items: center;
         display: flex;
@@ -695,13 +694,14 @@
         justify-content: center;
         flex-direction: column;
     }
-    .btn{
+
+    .btn {
         border-top: 3px solid #99a37f36;
         display: flex;
         justify-content: flex-start;
         transition: width 0.3s;
         width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         height: 12%;
         font-size: 15vh;
         flex-wrap: wrap;
@@ -709,7 +709,7 @@
 
     .btn button {
         flex-basis: 50%;
-        font-family: retro;
+        font-family: retro, serif;
     }
 
     #stats-btn {
@@ -718,17 +718,11 @@
 
     }
 
-    #succes-btn {
+    #success-btn {
         background-color: #f0981994;
         font-size: 10vh;
 
     }
-
-
-
-
-
-
 }
 
 
