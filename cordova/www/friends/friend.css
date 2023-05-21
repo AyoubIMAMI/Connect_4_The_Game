@@ -1,111 +1,4 @@
 
-@font-face {
-    font-family: retro;
-    src: url(../resources/font/retro.ttf);
-}
-@media only screen and (max-width: 600px) {
-/* Set default font and background color */
-body {
-    font-family: retro;
-    background-color: #f6ffd2;
-}
-    .wrapperMiniFriend{
-    }
-
-
-
-.buttonFriends, .buttonAcceptChallenge {
-    padding: 1%;
-    border-radius: 1%;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    width: 30%;
-    text-align: center;
-    border: 2px solid #0000003d;
-    margin-left: auto;
-}
-#decline{
-    background-color: red;
-}
-.friendDisplay{
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(231, 225, 195, 0.36);
-    padding: 3%;
-    border-radius: 30vw;
-    width: 80%;
-    margin: auto;
-    margin-top: 30vw;
-}
-
-/* Style the user not found message */
-.userNotFoundMessage {
-    display: none;
-    margin-top: 10px;
-}
-#accept{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.buttonWrapper{
-    display: flex;
-}
-#fMenu{
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    background-color: #fffbe3d1;
-    border-top: 3px solid #99a37f36;
-    border-right: 3px solid #99a37f36;
-    border-left: 3px solid #99a37f36;
-    border-bottom: 3px solid #99a37f36;
-    display: flex;
-    bottom: 0;
-    padding: 1%;
-    width: 70%;
-    margin: auto;
-    margin-top: 45vw;
-    margin-bottom: 5vw;
-    border-radius: 5vw;
-}
-#decline{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.friend,.friendIsChallenging,.friendReq{
-    position: relative;
-    background-color: rgba(231, 225, 195, 0.36);
-    display: flex;
-    margin-bottom: 4%;
-    margin-top: 3%;
-    justify-content: center;
-}
-.friendReq{
-    display: flex;
-    flex-direction: column;
-    padding: 3%;
-    border-radius: 30vw;
-    width: 80%;
-    margin: auto;
-    margin-top: 30vw;
-}
-
-
-.notification {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-
 .notification-content {
     display: flex;
     flex-direction: column;
@@ -119,71 +12,20 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.ok-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 30px;
-    cursor: pointer;
-    margin-top: auto;
-}
-#notificationTextMessage{
-    margin:auto;
-    font-size: 40px;
+@font-face {
+    font-family: retro;
+    src: url(../resources/font/retro.ttf);
 }
 
-#user-message{
-    font-size: 12px;
-}
-
-
-.backgroundLittleMenu .shapeLittleMenu{
-    height: 20vh;
-    width: 20vh;
-    position: absolute;
-    border-radius: 50%;
-}
-
-
-.shapeLittleMenu:first-child{
-    background: linear-gradient(
-            #1845ad,
-            #23a2f6
-    );
-    left: 10%;
-    bottom: 10%;
-}
-.shapeLittleMenu:last-child{
-    background: linear-gradient(
-            to right,
-            #ff512f,
-            #f09819
-    );
-    right: 30%;
-    bottom: 15%;
-}
-
-
-}
-
-@media only screen and (min-width: 600px) and (min-height: 600px) {
-    .friendDisplay{
-        display: flex;
-        flex-direction: column;
-        background-color: rgba(231, 225, 195, 0.36);
-        padding:3%;
-    }
+@media only screen and (max-width: 600px) {
     /* Set default font and background color */
-    .backgroundLittleMenu .shapeLittleMenu{
-        display: none;
-    }
     body {
-        font-family: retro;
+        font-family: retro, serif;
         background-color: #f6ffd2;
     }
 
+    .wrapperMiniFriend {
+    }
 
 
     .buttonFriends, .buttonAcceptChallenge {
@@ -197,7 +39,172 @@ body {
         border: 2px solid #0000003d;
         margin-left: auto;
     }
-    #decline{
+
+    #decline {
+        background-color: red;
+    }
+
+    .friendDisplay {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(231, 225, 195, 0.36);
+        padding: 3%;
+        border-radius: 30vw;
+        width: 80%;
+        margin: 30vw auto auto;
+    }
+
+    /* Style the user not found message */
+    .userNotFoundMessage {
+        display: none;
+        margin-top: 10px;
+    }
+
+    #accept {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .buttonWrapper {
+        display: flex;
+    }
+
+    #fMenu {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        background-color: #fffbe3d1;
+        border-top: 3px solid #99a37f36;
+        border-right: 3px solid #99a37f36;
+        border-left: 3px solid #99a37f36;
+        border-bottom: 3px solid #99a37f36;
+        display: flex;
+        bottom: 0;
+        padding: 1%;
+        width: 70%;
+        margin: 45vw auto 5vw;
+        border-radius: 5vw;
+    }
+
+    #decline {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .friend, .friendIsChallenging, .friendReq {
+        position: relative;
+        background-color: rgba(231, 225, 195, 0.36);
+        display: flex;
+        margin-bottom: 4%;
+        margin-top: 3%;
+        justify-content: center;
+    }
+
+    .friendReq {
+        display: flex;
+        flex-direction: column;
+        padding: 3%;
+        border-radius: 30vw;
+        width: 80%;
+        margin: 30vw auto auto;
+    }
+
+
+    .notification {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .ok-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 30px;
+        cursor: pointer;
+        margin-top: auto;
+    }
+
+    #notificationTextMessage {
+        margin: auto;
+        font-size: 40px;
+    }
+
+    #user-message {
+        font-size: 12px;
+    }
+
+
+    .backgroundLittleMenu .shapeLittleMenu {
+        height: 20vh;
+        width: 20vh;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+
+    .shapeLittleMenu:first-child {
+        background: linear-gradient(
+                #1845ad,
+                #23a2f6
+        );
+        left: 10%;
+        bottom: 10%;
+    }
+
+    .shapeLittleMenu:last-child {
+        background: linear-gradient(
+                to right,
+                #ff512f,
+                #f09819
+        );
+        right: 30%;
+        bottom: 15%;
+    }
+
+
+}
+
+@media only screen and (min-width: 600px) and (min-height: 600px) {
+    .friendDisplay {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(231, 225, 195, 0.36);
+        padding: 3%;
+    }
+
+    /* Set default font and background color */
+    .backgroundLittleMenu .shapeLittleMenu {
+        display: none;
+    }
+
+    body {
+        font-family: retro, serif;
+        background-color: #f6ffd2;
+    }
+
+
+    .buttonFriends, .buttonAcceptChallenge {
+        padding: 1%;
+        border-radius: 1%;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        width: 30%;
+        text-align: center;
+        border: 2px solid #0000003d;
+        margin-left: auto;
+    }
+
+    #decline {
         background-color: red;
     }
 
@@ -206,13 +213,15 @@ body {
         display: none;
         margin-top: 10px;
     }
-    #accept{
+
+    #accept {
         position: absolute;
         top: 0;
         right: 0;
     }
-    #fMenu{
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+    #fMenu {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -222,12 +231,14 @@ body {
         bottom: 0;
         width: 99%;
     }
-    #decline{
+
+    #decline {
         position: absolute;
         bottom: 0;
         right: 0;
     }
-    .friend,.friendIsChallenging,.friendReq{
+
+    .friend, .friendIsChallenging, .friendReq {
         position: relative;
         background-color: rgba(231, 225, 195, 0.36);
         display: flex;
@@ -235,10 +246,11 @@ body {
         margin-top: 3%;
         justify-content: center;
     }
-    .friendReq{
+
+    .friendReq {
         font-size: 4vh;
-        margin-bottom: 0%;
-        margin-top: 0%;
+        margin-bottom: 0;
+        margin-top: 0;
     }
 
 
@@ -254,21 +266,6 @@ body {
         background-color: rgba(0, 0, 0, 0.5);
     }
 
-
-
-    .notification-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        width: 40%;
-        height: 30%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-
     .ok-btn {
         background-color: #007bff;
         color: #fff;
@@ -279,34 +276,34 @@ body {
         cursor: pointer;
         margin-top: auto;
     }
-    #notificationTextMessage{
-        margin:auto;
+
+    #notificationTextMessage {
+        margin: auto;
         font-size: 40px;
     }
 
     .ok-btn:hover {
         background-color: #0069d9;
     }
-    #user-message{
+
+    #user-message {
         font-size: 12px;
     }
-    .buttonWrapper{
+
+    .buttonWrapper {
         display: flex;
     }
 }
 
 
-
-
-
-@media only screen and (max-height: 600px) and (min-width:500px) {
+@media only screen and (max-height: 600px) and (min-width: 500px) {
     body {
-        font-family: retro;
+        font-family: retro, serif;
         background-color: #f6ffd2;
     }
-    .wrapperMiniFriend{
-    }
 
+    .wrapperMiniFriend {
+    }
 
 
     .buttonFriends, .buttonAcceptChallenge {
@@ -320,14 +317,16 @@ body {
         border: 2px solid #0000003d;
         margin-left: auto;
     }
-    #decline{
+
+    #decline {
         background-color: red;
     }
-    .friendDisplay{
+
+    .friendDisplay {
         display: flex;
         flex-direction: column;
         background-color: rgba(231, 225, 195, 0.36);
-        padding:3%;
+        padding: 3%;
     }
 
     /* Style the user not found message */
@@ -335,17 +334,20 @@ body {
         display: none;
         margin-top: 10px;
     }
-    #accept{
+
+    #accept {
         position: absolute;
         top: 0;
         right: 0;
     }
-    .buttonWrapper{
+
+    .buttonWrapper {
         display: flex;
     }
-    #fMenu{
+
+    #fMenu {
         margin-top: 20vw;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -355,12 +357,14 @@ body {
         bottom: 0;
         padding: 1%;
     }
-    #decline{
+
+    #decline {
         position: absolute;
         bottom: 0;
         right: 0;
     }
-    .friend,.friendIsChallenging,.friendReq{
+
+    .friend, .friendIsChallenging, .friendReq {
         position: relative;
         background-color: rgba(231, 225, 195, 0.36);
         display: flex;
@@ -368,11 +372,12 @@ body {
         margin-top: 3%;
         justify-content: center;
     }
-    .friendReq{
+
+    .friendReq {
         display: flex;
         flex-direction: column;
-        margin-bottom: 0%;
-        margin-top: 0%;
+        margin-bottom: 0;
+        margin-top: 0;
     }
 
 
@@ -388,21 +393,6 @@ body {
         background-color: rgba(0, 0, 0, 0.5);
     }
 
-
-
-    .notification-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        width: 40%;
-        height: 30%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-
     .ok-btn {
         background-color: #007bff;
         color: #fff;
@@ -413,17 +403,18 @@ body {
         cursor: pointer;
         margin-top: auto;
     }
-    #notificationTextMessage{
-        margin:auto;
+
+    #notificationTextMessage {
+        margin: auto;
         font-size: 40px;
     }
 
-    #user-message{
+    #user-message {
         font-size: 12px;
     }
 
 
-    .backgroundLittleMenu .shapeLittleMenu{
+    .backgroundLittleMenu .shapeLittleMenu {
         height: 20vh;
         width: 20vh;
         position: absolute;
@@ -431,7 +422,7 @@ body {
     }
 
 
-    .shapeLittleMenu:first-child{
+    .shapeLittleMenu:first-child {
         background: linear-gradient(
                 #1845ad,
                 #23a2f6
@@ -439,7 +430,8 @@ body {
         left: 10%;
         bottom: 10%;
     }
-    .shapeLittleMenu:last-child{
+
+    .shapeLittleMenu:last-child {
         background: linear-gradient(
                 to right,
                 #ff512f,

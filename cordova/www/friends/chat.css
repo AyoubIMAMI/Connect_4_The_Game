@@ -1,22 +1,65 @@
 
-@media only screen and (max-width:600px) {
+#chat-bar {
+    background-color: #fffbe3d1;
+    padding: .5%;
+    border-top: 3px solid #99a37f36;
+    border-right: 3px solid #99a37f36;
+    border-left: 3px solid #99a37f36;
+    border-bottom: 3px solid #99a37f36;
+    margin-top: 2%;
+    display: flex;
+    bottom: 5px;
+    height: 20vh;
+}
+
+.accept {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 2% 4%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 5vh;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    width: 30%;
+}
+
+.chat-header {
+    height: 20vh;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #9e9d9224;
+    border: none;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
     .chat-container {
         font-size: 10vw;
         position: absolute;
         bottom: 0;
         right: 0;
         background-color: #fff;
-        box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
     }
-    #miniFriendsContacts{
+
+    #miniFriendsContacts {
         width: 30%;
         margin: auto;
     }
-    #miniNotification{
+
+    #miniNotification {
         display: flex;
         width: 30%;
         margin: auto;
@@ -40,7 +83,8 @@
         border: none;
         font-size: 40px;
     }
-    .miniFriendMenu{
+
+    .miniFriendMenu {
         background-color: rgba(240, 168, 80, 0.64);
         font-size: 10vw;
     }
@@ -55,40 +99,13 @@
         border: none
     }
 
-    #chat-bar {
-        background-color: #fffbe3d1;
-        padding: .5%;
-        border-top: 3px solid #99a37f36;
-        border-right: 3px solid #99a37f36;
-        border-left: 3px solid #99a37f36;
-        border-bottom: 3px solid #99a37f36;
-        margin-top: 2%;
-        display: flex;
-        bottom: 5px;
-        height: 20vh;
-    }
-
-    .chat-header {
-        height: 20vh;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #9e9d9224;
-        border: none;
-        text-align: center;
-        border-radius: 15px 15px 0 0;
-        display: none;
-
-    }
-
     .choice-header {
         background-color: #9e9d9224;
         border: none;
         text-align: center;
         display: flex;
         justify-content: space-between;
-        order:3;
+        order: 3;
     }
 
 
@@ -101,7 +118,6 @@
         height: 183vh;
         background-color: #f6ffd2;
     }
-
 
 
     .icon_mini {
@@ -127,7 +143,7 @@
     }
 
     #miniFriendMenu {
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -147,7 +163,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         height: 80%;
-        order:1;
+        order: 1;
     }
 
     .miniDropdownNotification {
@@ -165,7 +181,8 @@
         font-size: 20vw;
         margin-bottom: 10vw;
     }
-    .miniFriendMessageWrapper{
+
+    .miniFriendMessageWrapper {
         height: 100%;
         background-color: #f0a850;
         font-size: 10vw;
@@ -174,13 +191,13 @@
 
 
     .fa-message {
-        margin-left: 0px;
+        margin-left: 0;
         margin-right: auto;
     }
 
     .fa-xmark {
         margin-left: auto;
-        margin-right: 0px;
+        margin-right: 0;
     }
 
     .fight {
@@ -192,37 +209,9 @@
     }
 
 
-    .accept {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 2% 4%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 5vh;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: auto;
-        width: 30%;
-    }
-
-
     .decline {
         background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 2% 4%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 5vh;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: auto;
-        width: 30%;
     }
-
 
 
     .glow {
@@ -241,23 +230,24 @@
             box-shadow: 0 0 6px 3px #fff, /* inner white */ 0 0 10px 6px #f0f, /* middle magenta */ 0 0 14px 9px #0ff;
         }
     }
-    #miniHomeBack{
+    #miniHomeBack {
         display: flex;
     }
 }
 
 
-@media only screen and (min-width: 600px) and (min-height: 600px){
-    #miniHomeBack{
+@media only screen and (min-width: 600px) and (min-height: 600px) {
+    #miniHomeBack {
         display: none;
     }
+
     .chat-container {
         position: fixed;
-        bottom: 0px;
+        bottom: 0;
         right: 0;
         background-color: #fff;
         border-radius: 15px 15px 0 0;
-        box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -344,10 +334,12 @@
     #miniFriendsContacts:hover {
         background-color: rgba(0, 0, 0, 0.06);
     }
-    #miniFriendsContacts{
+
+    #miniFriendsContacts {
         width: 50%;
     }
-    #miniNotification{
+
+    #miniNotification {
         width: 50%;
     }
 
@@ -376,12 +368,12 @@
         border-radius: 5px;
         width: 100%;
         background-color: #9e9d9224;
-        font-size:23px;
+        font-size: 23px;
 
     }
 
     #miniFriendMenu {
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -412,18 +404,19 @@
         background-color: rgba(231, 225, 195, 0.36);
         text-align: center;
     }
-    .mini-Friend-name{
+
+    .mini-Friend-name {
         font-size: 8vh;
     }
 
     .fa-message {
-        margin-left: 0px;
+        margin-left: 0;
         margin-right: auto;
     }
 
     .fa-xmark {
         margin-left: auto;
-        margin-right: 0px;
+        margin-right: 0;
     }
 
     .fight {
@@ -438,8 +431,7 @@
         background-color: rgba(0, 0, 0, 0.06);
     }
 
-    .accept {
-        background-color: #4CAF50;
+    .accept, .decline {
         color: white;
         border: none;
         padding: 5% 5%;
@@ -451,6 +443,10 @@
         cursor: pointer;
         margin-top: auto;
         margin-bottom: auto;
+    }
+
+    .accept {
+        background-color: #4CAF50;
     }
 
     .accept:hover {
@@ -459,17 +455,6 @@
 
     .decline {
         background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 5% 5%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 4vh;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: auto;
-        margin-bottom: auto;
     }
 
     .decline:hover {
@@ -496,32 +481,29 @@
 }
 
 
-
-
-
-@media only screen and (max-height: 600px) and (min-width:500px) {
-
-
+@media only screen and (max-height: 600px) and (min-width: 500px) {
     .chat-container {
         font-size: 4vw;
         position: absolute;
         bottom: 0;
         right: 0;
         background-color: #fff;
-        box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
     }
-    #miniFriendsContacts{
+
+    #miniFriendsContacts {
         display: flex;
         height: 15vh;
         background-color: rgba(0, 0, 0, 0);
         width: 30%;
         margin: auto;
     }
-    #miniNotification{
+
+    #miniNotification {
         height: 15vh;
         display: flex;
         width: 30%;
@@ -546,7 +528,8 @@
         border: none;
         font-size: 40px;
     }
-    .miniFriendMenu{
+
+    .miniFriendMenu {
         background-color: rgba(240, 168, 80, 0.64);
         font-size: 5vw;
     }
@@ -561,40 +544,13 @@
         border: none
     }
 
-    #chat-bar {
-        background-color: #fffbe3d1;
-        padding: .5%;
-        border-top: 3px solid #99a37f36;
-        border-right: 3px solid #99a37f36;
-        border-left: 3px solid #99a37f36;
-        border-bottom: 3px solid #99a37f36;
-        margin-top: 2%;
-        display: flex;
-        bottom: 5px;
-        height: 20vh;
-    }
-
-    .chat-header {
-        height: 20vh;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #9e9d9224;
-        border: none;
-        text-align: center;
-        border-radius: 15px 15px 0 0;
-        display: none;
-
-    }
-
     .choice-header {
         background-color: #9e9d9224;
         border: none;
         text-align: center;
         display: flex;
         justify-content: space-between;
-        order:3;
+        order: 3;
         height: 10vw;
         font-size: 3vw;
     }
@@ -609,7 +565,6 @@
         height: 190vh;
         background-color: #f6ffd2;
     }
-
 
 
     .icon_mini {
@@ -634,7 +589,7 @@
     }
 
     #miniFriendMenu {
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -654,7 +609,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         height: 60%;
-        order:1;
+        order: 1;
     }
 
     .miniDropdownNotification {
@@ -671,7 +626,8 @@
         height: 100%;
         margin-bottom: 10vw;
     }
-    .miniFriendMessageWrapper{
+
+    .miniFriendMessageWrapper {
         height: 100%;
         background-color: #f0a850;
         padding: 5vw;
@@ -679,13 +635,13 @@
 
 
     .fa-message {
-        margin-left: 0px;
+        margin-left: 0;
         margin-right: auto;
     }
 
     .fa-xmark {
         margin-left: auto;
-        margin-right: 0px;
+        margin-right: 0;
     }
 
     .fight {
@@ -696,38 +652,9 @@
         margin-left: 10px;
     }
 
-
-    .accept {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 2% 4%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 5vh;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: auto;
-        width: 30%;
-    }
-
-
     .decline {
         background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 2% 4%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 5vh;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: auto;
-        width: 30%;
     }
-
 
 
     .glow {
@@ -746,17 +673,12 @@
             box-shadow: 0 0 6px 3px #fff, /* inner white */ 0 0 10px 6px #f0f, /* middle magenta */ 0 0 14px 9px #0ff;
         }
     }
-    #miniHomeBack{
+    #miniHomeBack {
         height: 15vh;
         display: flex;
     }
-    #miniHomeBack:first-child{
+
+    #miniHomeBack:first-child {
         margin: auto;
     }
-
-
-
-
-
-
 }
