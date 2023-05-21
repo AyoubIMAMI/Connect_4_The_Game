@@ -1,11 +1,11 @@
 @font-face {
     font-family: retro;
-    src: url(../ressources/font/retro.ttf);
-}
-html{
-    height: 100%;
+    src: url(../resources/font/retro.ttf);
 }
 
+html {
+    height: 100%;
+}
 
 @media only screen and (max-width: 600px) {
 
@@ -14,23 +14,26 @@ html{
         text-align: center;
         font-size: 12vw;
     }
-    .header-top{
+
+    .header-top {
         height: 20%;
         display: flex;
     }
 
-    body{
-        font-family: retro;
+    body {
+        font-family: retro, serif;
         background-color: #f6ffd2;
         zoom: 0.5;
         overflow: hidden;
         height: 100%;
     }
-    .ic{
-        margin:auto;
+
+    .ic {
+        margin: auto;
         color: white;
     }
-    .home{
+
+    .home {
         display: flex;
         height: 70%;
     }
@@ -40,65 +43,73 @@ html{
         width: 100%;
     }
 
-    #notVibrating{
+    #notVibrating {
         display: none;
     }
-    .littleIconMenu{
+
+    .littleIconMenu {
         display: flex;
     }
 
-    .headerGameSaved{
+    .headerGameSaved {
         display: flex;
     }
 
-    .dropdown{
+    .dropdown {
         position: absolute;
         width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
         height: 60%;
     }
-    .gameSaved{
+
+    .gameSaved {
         font-weight: bold;
         height: 10%;
         text-align: left;
         font-size: 7vw;
     }
-    .trash{
+
+    .trash {
         margin-left: auto;
     }
-    h4{
+
+    h4 {
         font-size: 5vh;
     }
-    .textForTrash{
-        margin:auto;
+
+    .textForTrash {
+        margin: auto;
     }
-    .littleMenu{
+
+    .littleMenu {
         background-color: #fffbe3;
         padding: .5%;
         height: 150vh;
         display: none;
         width: 200vw;
     }
-    .item{
+
+    .item {
         background-color: rgba(231, 225, 195, 0.36);
         display: flex;
         margin-top: 3%;
         justify-content: center;
     }
 
-    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot{
+    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot {
         height: 100px;
         width: 100px;
     }
 
-    .profil{
+    .profile {
         background-color: rgb(76 168 184);
     }
-    .iconHeader{
+
+    .iconHeader {
     }
 
-    .iconHomePage{
+    .iconHomePage {
         cursor: pointer;
         font-size: 14vw;
         border-radius: 50%;
@@ -110,15 +121,18 @@ html{
         display: flex;
         color: white;
     }
-    .saveIcon{
+
+    .saveIcon {
         margin: auto;
         background-color: rgb(84 184 76);
     }
-    .trashIcon{
+
+    .trashIcon {
         background-color: #ffa7a7;
         margin-left: auto;
     }
-    .crossIcon{
+
+    .crossIcon {
         background-color: rgb(219 38 38);
         margin-left: auto;
         border-radius: 20%;
@@ -126,9 +140,10 @@ html{
         height: 8vw;
     }
 
-    .logout{
+    .logout {
         background-color: #f09819;
     }
+
     .gameLaunch {
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
@@ -139,18 +154,21 @@ html{
         justify-content: flex-start;
         transition: width 0.3s;
         width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         height: 20%;
         font-size: 24vw;
         border-radius: 30vw;
     }
-    .localLaunch{
+
+    .localLaunch {
         background-color: rgb(82 197 217 / 90%);
     }
-    .onlineLaunch{
+
+    .onlineLaunch {
         background-color: #dc3fca96;
     }
-    .botLaunch{
+
+    .botLaunch {
         background-color: #f0981994;
     }
 
@@ -169,17 +187,18 @@ html{
         margin: auto;
     }
 
-    .shape{
+    .shape {
         z-index: -2;
     }
 
-    .background .shape{
+    .background .shape {
         height: 20vh;
         width: 20vh;
         position: absolute;
         border-radius: 50%;
     }
-    .shape:first-child{
+
+    .shape:first-child {
         background: linear-gradient(
                 #1845ad,
                 #23a2f6
@@ -187,7 +206,8 @@ html{
         left: 10%;
         bottom: 10%;
     }
-    .shape:last-child{
+
+    .shape:last-child {
         background: linear-gradient(
                 to right,
                 #ff512f,
@@ -196,20 +216,23 @@ html{
         right: 30%;
         bottom: 15%;
     }
-    .iconInMenu{
+
+    .iconInMenu {
         margin: auto;
     }
 }
 
 /* Styles for computers */
 @media only screen and (min-width: 600px) and (min-height: 600px) {
-    .crossIcon{
+    .crossIcon {
         display: none;
     }
-    .saveIcon{
+
+    .saveIcon {
         display: none;
     }
-    .headerGameSaved{
+
+    .headerGameSaved {
         display: flex;
     }
 
@@ -217,63 +240,74 @@ html{
         text-align: center;
         font-size: 6vw;
     }
-    .header-top{
+
+    .header-top {
         height: 15%;
         margin-bottom: 5%;
     }
 
-    body{
-        font-family: retro;
+    body {
+        font-family: retro, serif;
         background-color: #f6ffd2;
         zoom: 0.5;
         overflow: hidden;
         height: 100%;
     }
-    .ic{
-        margin:auto;
+
+    .ic {
+        margin: auto;
     }
-    .home{
+
+    .home {
         display: flex;
         height: 80%;
     }
+
     .menu {
         align-content: center;
         width: 60%;
     }
 
-    .dropdown{
+    .dropdown {
         position: absolute;
         width: 20%;
         overflow-x: hidden;
         overflow-y: auto;
         height: 60%;
     }
-    .gameSaved{
+
+    .gameSaved {
         font-weight: bold;
         text-align: left;
         font-size: 200%;
     }
-    #trash{
+
+    #trash {
         float: right;
     }
-    .gameSaved:hover{
+
+    .gameSaved:hover {
         cursor: pointer;
     }
-    h4{
+
+    h4 {
         font-size: 4vh;
     }
-    .item{
+
+    .item {
         background-color: rgba(231, 225, 195, 0.36);
         display: flex;
         margin-bottom: 4%;
         margin-top: 3%;
         justify-content: center;
     }
-    .item:hover{
+
+    .item:hover {
         background-color: rgba(124, 121, 108, 0.34);
     }
-    .littleMenu{
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+    .littleMenu {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -286,12 +320,12 @@ html{
     }
 
 
-    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot{
+    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot {
         height: 100px;
         width: 100px;
     }
 
-    .profil{
+    .profile {
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
         border-right: 3px solid #99a37f36;
@@ -302,7 +336,8 @@ html{
         padding: 10px 20px;
         cursor: pointer;
     }
-    .logout{
+
+    .logout {
         position: absolute;
         top: 10px;
         right: 10px;
@@ -311,6 +346,7 @@ html{
         cursor: pointer;
 
     }
+
     .gameLaunch {
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
@@ -321,15 +357,17 @@ html{
         justify-content: flex-start;
         transition: width 0.3s;
         width: 90%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         font-size: 10vw;
         padding: 5vh;
     }
-    .gameLaunch:hover{
+
+    .gameLaunch:hover {
         width: 100%;
         cursor: pointer;
     }
-    .littleIconMenu{
+
+    .littleIconMenu {
         display: none;
     }
 
@@ -348,17 +386,18 @@ html{
         margin: auto;
     }
 
-    .shape{
+    .shape {
         z-index: -2;
     }
 
-    .background .shape{
+    .background .shape {
         height: 200px;
         width: 200px;
         position: absolute;
         border-radius: 50%;
     }
-    .shape:first-child{
+
+    .shape:first-child {
         background: linear-gradient(
                 #1845ad,
                 #23a2f6
@@ -366,7 +405,8 @@ html{
         left: 30%;
         top: 20%;
     }
-    .shape:last-child{
+
+    .shape:last-child {
         background: linear-gradient(
                 to right,
                 #ff512f,
@@ -376,46 +416,44 @@ html{
         bottom: 15%;
     }
 
-    .miniHomeBack{
+    .miniHomeBack {
         display: none;
     }
 
 }
 
 
-
-
-
-
-
-
-@media only screen and (max-height: 600px) and (min-width:500px) {
+@media only screen and (max-height: 600px) and (min-width: 500px) {
 
     .title {
         margin: auto;
         text-align: center;
         font-size: 12vh;
     }
-    .header-top{
+
+    .header-top {
         height: 20%;
         display: flex;
     }
-    .mini-Friend-name{
+
+    .mini-Friend-name {
         font-size: 7vw;
     }
 
-    body{
-        font-family: retro;
+    body {
+        font-family: retro, serif;
         background-color: #f6ffd2;
         zoom: 0.5;
         overflow: hidden;
         height: 100%;
     }
-    .ic{
-        margin:auto;
+
+    .ic {
+        margin: auto;
         color: white;
     }
-    .home{
+
+    .home {
         display: flex;
         height: 70%;
     }
@@ -425,65 +463,73 @@ html{
         width: 100%;
     }
 
-    #notVibrating{
+    #notVibrating {
         display: none;
     }
-    .littleIconMenu{
+
+    .littleIconMenu {
         display: flex;
     }
 
-    .headerGameSaved{
+    .headerGameSaved {
         display: flex;
     }
 
-    .dropdown{
+    .dropdown {
         position: absolute;
         width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
         height: 60%;
     }
-    .gameSaved{
+
+    .gameSaved {
         font-weight: bold;
         height: 10%;
         text-align: left;
         font-size: 7vh;
     }
-    .trash{
+
+    .trash {
         margin-left: auto;
     }
-    h4{
+
+    h4 {
         font-size: 5vh;
     }
-    .textForTrash{
-        margin:auto;
+
+    .textForTrash {
+        margin: auto;
     }
-    .littleMenu{
+
+    .littleMenu {
         background-color: #fffbe3;
         padding: .5%;
         height: 150vh;
         display: none;
         width: 100%;
     }
-    .item{
+
+    .item {
         background-color: rgba(231, 225, 195, 0.36);
         display: flex;
         margin-top: 1%;
         justify-content: center;
     }
 
-    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot{
+    fa-solid fa-user-group, fa-solid fa-earth-europe, fa-solid fa-robot {
         height: 100px;
         width: 100px;
     }
 
-    .profil{
+    .profile {
         background-color: rgb(76 168 184);
     }
-    .iconHeader{
+
+    .iconHeader {
     }
 
-    .iconHomePage{
+    .iconHomePage {
         cursor: pointer;
         font-size: 14vh;
         border-radius: 50%;
@@ -495,15 +541,18 @@ html{
         display: flex;
         color: white;
     }
-    .saveIcon{
+
+    .saveIcon {
         margin: auto;
         background-color: rgb(84 184 76);
     }
-    .trashIcon{
+
+    .trashIcon {
         background-color: #ffa7a7;
         margin-left: auto;
     }
-    .crossIcon{
+
+    .crossIcon {
         background-color: rgb(219 38 38);
         margin-left: auto;
         border-radius: 20%;
@@ -511,9 +560,10 @@ html{
         height: 8vh;
     }
 
-    .logout{
+    .logout {
         background-color: #f09819;
     }
+
     .gameLaunch {
         background-color: #fffbe3d1;
         border-top: 3px solid #99a37f36;
@@ -524,17 +574,20 @@ html{
         justify-content: flex-start;
         transition: width 0.3s;
         width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         height: 20%;
         font-size: 24vh;
     }
-    .localLaunch{
+
+    .localLaunch {
         background-color: rgb(82 197 217 / 90%);
     }
-    .onlineLaunch{
+
+    .onlineLaunch {
         background-color: #dc3fca96;
     }
-    .botLaunch{
+
+    .botLaunch {
         background-color: #f0981994;
     }
 
@@ -553,17 +606,18 @@ html{
         margin: auto;
     }
 
-    .shape{
+    .shape {
         z-index: -2;
     }
 
-    .background .shape{
+    .background .shape {
         height: 20vh;
         width: 20vh;
         position: absolute;
         border-radius: 50%;
     }
-    .shape:first-child{
+
+    .shape:first-child {
         background: linear-gradient(
                 #1845ad,
                 #23a2f6
@@ -571,7 +625,8 @@ html{
         left: 10%;
         bottom: 10%;
     }
-    .shape:last-child{
+
+    .shape:last-child {
         background: linear-gradient(
                 to right,
                 #ff512f,
@@ -580,7 +635,8 @@ html{
         right: 30%;
         bottom: 15%;
     }
-    .iconInMenu{
+
+    .iconInMenu {
         margin: auto;
     }
 }

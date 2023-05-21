@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<link href="/home/home_style.css" type="text/css" rel="stylesheet">
-<link href="/home/search_style.css" type="text/css" rel="stylesheet">
-<link href="/home/header_style.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..."/>
-<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-<script crossorigin="anonymous" src="https://kit.fontawesome.com/76ed084c57.js"></script>
-
+<link href="home_style.css" type="text/css" rel="stylesheet">
+<link href="search_style.css" type="text/css" rel="stylesheet">
+<link href="header_style.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-..."/>
 <link href="../friends/friend.css" type="text/css" rel="stylesheet">
 <link href="../friends/chat.css" type="text/css" rel="stylesheet">
 <link href="../plugins/connectionOverlay.css" type="text/css" rel="stylesheet">
-<script type="module" src="../friends/friends.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
-<script crossorigin="anonymous" src="https://kit.fontawesome.com/76ed084c57.js"></script>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +18,12 @@
 
 <body>
 <div class="header-top">
-    <div class="profil iconHomePage" id="profil">
-        <i class ="homepage fas fa-user" ></i>
+    <div class="profile iconHomePage" id="profile">
+        <i class="homepage fas fa-user"></i>
     </div>
     <h1 class="title" id="title"> WELCOME TO CONNECT4QUARTS </h1>
     <div class="logout iconHomePage" id="logout">
-        <i class ="iconHeader fas fa-sign-out-alt" ></i>
+        <i class="iconHeader fas fa-sign-out-alt"></i>
     </div>
 </div>
 <div class="home">
@@ -51,8 +45,9 @@
                 <iconify-icon icon="material-symbols:save" class="iconInMenu iconHeader"></iconify-icon>
             </div>
             <div class="saveIcon iconHomePage" id="muteVibrationButton" style="background-color: rgb(128 215 221)">
-                <iconify-icon icon="ri:volume-off-vibrate-fill" class="iconInMenu iconHeader" id="notVibrating"></iconify-icon>
-                <iconify-icon icon="ri:volume-vibrate-fill" class="iconInMenu iconHeader" id="vibrating" ></iconify-icon>
+                <iconify-icon icon="ri:volume-off-vibrate-fill" class="iconInMenu iconHeader"
+                              id="notVibrating"></iconify-icon>
+                <iconify-icon icon="ri:volume-vibrate-fill" class="iconInMenu iconHeader" id="vibrating"></iconify-icon>
             </div>
         </div>
     </div>
@@ -73,45 +68,42 @@
         </div>
     </div>
 
-
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
 </div>
-<div id="hidingEverything" >
+<div id="hidingEverything">
 </div>
 <div class="container" id="search">
     <div class="header">
         <h1>Waiting for an opponent</h1>
     </div>
     <div class="loading">
-        <img src="../ressources/images/fight.png" alt="Loader icon" class="loader">
+        <img src="../resources/images/fight.png" alt="Loader icon" class="loader">
         <p class="loading-text">Looking for a worthy opponent</p>
     </div>
     <button id="cancel"> Cancel Queue</button>
 </div>
 
-
-
-
-
-
 <div class="chat-container" id="chat-container" style="display:none;z-index: 5;">
     <div class="chat-header" id="chat-header">
     </div>
     <div id="chat-messages" style="height: 100vh">
-        <!-- messages s'affichent ici -->
+        <!-- messages shown here -->
     </div>
     <div id="chat-bar">
-        <input type="search" id="chatBar" placeholder="Hey">
+        <label for="chatBar"></label><input type="search" id="chatBar" placeholder="Hey">
     </div>
 </div>
 <div class="chat-container" id="miniFriendContainer">
     <div class="chat-header" id="mini-chat-header" style="font-size:5vh">
-        <iconify-icon class="fight iconStyle glow" id="iconNotifFight1" style="margin:0; display:none; color:darkred;" icon="mdi:sword-cross"></iconify-icon>
-        <iconify-icon class="glow" icon="mdi:message-notification" id="iconNotif" style="display:none; color:darkred;"></iconify-icon>
-        <iconify-icon class="glow" icon="fluent-mdl2:add-friend" id="iconNotifFriendRequest1" style="display:none; color:forestgreen;"></iconify-icon>
+        <iconify-icon class="fight iconStyle glow" id="iconNotificationFight1" style="margin:0; display:none; color:darkred;"
+                      icon="mdi:sword-cross"></iconify-icon>
+        <iconify-icon class="glow" icon="mdi:message-notification" id="iconNotification"
+                      style="display:none; color:darkred;"></iconify-icon>
+        <iconify-icon class="glow" icon="fluent-mdl2:add-friend" id="iconNotificationFriendRequest1"
+                      style="display:none; color:forestgreen;"></iconify-icon>
         <div style="margin:auto">Menu</div>
         <i class="fa-solid fa-chevron-down" id="chevron-down" style="display:none;margin:0;"></i>
         <i class="fa-solid fa-chevron-up" id="chevron-up" style="display:block;margin:0;"></i>
@@ -127,8 +119,10 @@
 
             </div>
             <div id="miniNotification">
-                <iconify-icon class="fight iconStyle" id="iconNotifFight2" style="margin:0; display:none; color:darkred;" icon="mdi:sword-cross"></iconify-icon>
-                <iconify-icon icon="fluent-mdl2:add-friend" id="iconNotifFriendRequest2" style="display:none; color:forestgreen;"></iconify-icon>
+                <iconify-icon class="fight iconStyle" id="iconNotificationFight2"
+                              style="margin:0; display:none; color:darkred;" icon="mdi:sword-cross"></iconify-icon>
+                <iconify-icon icon="fluent-mdl2:add-friend" id="iconNotificationFriendRequest2"
+                              style="display:none; color:forestgreen;"></iconify-icon>
                 <iconify-icon icon="mdi:bell-notification" style="font-size: 2.4em; margin:auto"></iconify-icon>
             </div>
         </div>
@@ -138,7 +132,7 @@
                 <div class="shapeLittleMenu"></div>
             </div>
             <div id="fMenu">
-                <input type="search" id="searchBar" placeholder="Add Friend: type username">
+                <label for="searchBar"></label><input type="search" id="searchBar" placeholder="Add Friend: type username">
             </div>
             <div class="miniDropdown "></div>
         </div>
@@ -155,21 +149,18 @@
     <div class="notification-content">
         <p id="notificationTextMessage"></p>
         <button class="ok-btn" id="ok-btn">OK</button>
-        <button class="ok-btn" style="display: none" id="cancelChallengeMini" >Cancel</button>
+        <button class="ok-btn" style="display: none" id="cancelChallengeMini">Cancel</button>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
 </body>
+</html>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/76ed084c57.js"></script>
+<script type="module" src="../friends/friends.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/76ed084c57.js"></script>
 <script type="module" src="home.js"></script>
 <script type="module" src="../plugins/connection.js"></script>
 <script src="../cordova.js"></script>
-</html>

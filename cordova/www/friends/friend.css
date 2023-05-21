@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: retro;
-    src: url(../ressources/font/retro.ttf);
+    src: url(../resources/font/retro.ttf);
 }
 @media only screen and (max-width: 600px) {
 /* Set default font and background color */

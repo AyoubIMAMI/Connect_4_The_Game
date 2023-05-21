@@ -1,10 +1,10 @@
 @font-face {
     font-family: retro;
-    src: url(../ressources/font/retro.ttf);
+    src: url(../resources/font/retro.ttf);
 }
 
 body {
-    font-family: retro;
+    font-family: retro, serif;
 }
 
 .nav {
