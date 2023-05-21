@@ -1,0 +1,734 @@
+@font-face {
+    font-family: retro;
+    src: url(../ressources/font/retro.ttf);
+}
+.title{
+    height: 20%;
+}
+.parentMenu{
+    height: 100%;
+}
+@media only screen and (min-width: 600px) and (min-height: 600px){
+    body {
+        background-color: #f6ffd2;
+        font-family: retro;
+        font-size: 20px;
+        zoom: 0.6;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    html{
+        height: 100%;
+        width: 100%;
+    }
+    #stats-btn {
+        display: none;
+    }
+    #succes-btn{
+        display: none;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        text-shadow: 2px 2px #ff9900;
+    }
+
+    .home {
+        background-color: #fffbe3d1;
+        border-top: 3px solid #99a37f36;
+        border-right: 3px solid #99a37f36;
+        border-bottom: 3px solid #99a37f36;
+        font-size: 30px;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    h2, h3, h4 {
+        margin-left: 20px;
+        font-size: 30px;
+        color: #ff9900;
+    }
+
+    p {
+        margin-left: 40px;
+        font-size: 25px;
+    }
+
+    #username {
+        font-weight: bold;
+        color: #000000;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    th, td {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        width: 300px;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .progress-bar {
+        height: 20px;
+        background-color: #ddd;
+        border-radius: 5px;
+        display: inline-block;
+        width: 50%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .progress-bar-inner {
+        height: 100%;
+        background-color: #4CAF50;
+        text-align: right;
+        padding-right: 10px;
+        line-height: 20px;
+        transition: width 0.5s ease;
+    }
+
+    h5 {
+        font-size: 20px;
+        color: #ff9900;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    table {
+        border-collapse: collapse;
+        text-align: center;
+        float: right;
+        border-radius: 15px;
+    }
+
+    #succes {
+        height: 60%;
+        margin: auto;
+        border: 3px solid #99a37f36;
+        background-color: #91918380;
+        display: block;
+    }
+
+    thead {
+        color: black;
+        width: 200%;
+    }
+
+    tbody {
+        width: 200%;
+        margin-right: 0;
+
+    }
+
+    #rank {
+        font-style: italic;
+        color: #ff9900;
+        display: inline-block;
+    }
+    .bigWrapper{
+        box-shadow: 16px 16px 16px 16px rgba(0,0,0,0.2);
+    }
+
+    #rankImage {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: 3px solid #ff9900;
+        box-shadow: 0 0 10px #ff9900;
+        vertical-align: middle; /* Ajout de la propriété vertical-align */
+    }
+
+    .progress-bar-inner {
+        text-align: center;
+        width:0%;
+    }
+
+    #games-played, #wins, #losses, #draws {
+        font-weight: bold;
+        color: #ff9900;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    #winrate {
+        font-weight: bold;
+        color: #ff0000;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    .homepage {
+        background-color: #fffbe3d1;
+        border: 3px solid #99a37f36;
+        padding: 5px 5px;
+        font-size: 70px;
+        width: fit-content;
+        display: inline-block;
+        vertical-align: 0;
+        margin: auto;
+    }
+
+    .homepage:hover {
+        cursor: pointer;
+    }
+
+    .shape {
+        z-index: -2;
+    }
+
+    .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .shape:first-child {
+        background: linear-gradient(
+                #1845ad,
+                #23a2f6
+        );
+        left: 30%;
+        top: 20%;
+    }
+
+    .shape:last-child {
+        background: linear-gradient(
+                to right,
+                #ff512f,
+                #f09819
+        );
+        right: 30%;
+        bottom: 15%;
+    }
+
+
+    .image-background {
+        background-repeat: no-repeat;
+        background-size: 15%;
+        background-position: bottom left;
+        height: 130vh;
+        border-radius: 50%;
+    }
+    #stats {
+        margin:auto;
+        background-color: #918f7d69;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:600px) {
+    thead {
+        color: black;
+        width: 200%;
+    }
+    .homepage{
+        cursor: pointer;
+        font-size: 12vw;
+        background-color: rgb(76 168 184);
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        width: 15vw;
+        height: 15vw;
+        padding: 2% 2%;
+        display: flex;
+        color: white;
+    }
+
+    tbody {
+        width: 200%;
+        margin-right: 0;
+
+    }
+
+    #rank {
+        font-style: italic;
+        color: #ff9900;
+        display: inline-block;
+    }
+
+    #rankImage {
+        display: inline-block;
+        width: 20vw;
+        height: 20vw;
+        margin-left: 20vw;
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+        border-radius: 50%;
+        border: 3px solid #ff9900;
+        box-shadow: 0 0 10vw #ff9900;
+        vertical-align: middle; /* Ajout de la propriété vertical-align */
+    }
+
+    .progress-bar-inner {
+        text-align: center;
+        width: 0%;
+    }
+
+    #games-played, #wins, #losses, #draws {
+        font-weight: bold;
+        color: #ff9900;
+        text-shadow: 1vw 1vw #ffffff;
+    }
+
+    #winrate {
+        font-weight: bold;
+        color: #ff0000;
+        text-shadow: 1vw 1vw #ffffff;
+    }
+
+    .homepage:hover {
+        cursor: pointer;
+    }
+
+    .shape {
+        z-index: -2;
+    }
+
+    .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .image-background {
+        background-repeat: no-repeat;
+        background-size: 15%;
+        background-position: bottom left;
+        height: 130vw;
+        border-radius: 50%;
+    }
+
+    body {
+        background-color: #f6ffd2;
+        font-family: retro;
+        font-size: 5vw;
+        zoom: 0.6;
+        overflow-y: hidden;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 10vw;
+        text-shadow: 2px 2px #ff9900;
+    }
+
+    .home {
+        background-color: #fffbe3d1;
+        border-top: 3px solid #99a37f36;
+        border-right: 3px solid #99a37f36;
+        border-bottom: 3px solid #99a37f36;
+        font-size: 30px;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    h2, h3, h4 {
+        margin-left: 20px;
+        font-size: 30px;
+        color: #ff9900;
+    }
+
+    p {
+        font-size: 7vw;
+        margin-left: 40px;
+    }
+
+    #username {
+        font-weight: bold;
+        color: #000000;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    th, td {
+        padding: 4vw;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .progress-bar {
+        height: 20px;
+        background-color: #ddd;
+        border-radius: 5px;
+        display: inline-block;
+        width: 50%;
+        padding: 1vh;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .progress-bar-inner {
+        height: 100%;
+        background-color: #4CAF50;
+        text-align: right;
+        padding-right: 10px;
+        line-height: 20px;
+        transition: width 0.5s ease;
+    }
+
+    h5 {
+        font-size: 20px;
+        color: #ff9900;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    #succes {
+        float: none;
+        height: auto;
+        margin: 0 auto;
+        display: none;
+        background-color: #fe9e1363;
+    }
+
+    table {
+        float: none;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    #stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: #ff8af278;
+    }
+    .statsInterior{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    #success-container {
+        margin-top: 50px;
+    }
+
+    #stats-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .btn{
+        border-top: 3px solid #99a37f36;
+        display: flex;
+        justify-content: flex-start;
+        transition: width 0.3s;
+        width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        height: 10%;
+        font-size: 15vw;
+        flex-wrap: wrap;
+    }
+
+    .btn button {
+        flex-basis: 50%;
+        font-family: retro;
+    }
+
+    #stats-btn {
+        background-color: #dc3fca96;
+        font-size: 8vw;
+
+    }
+
+    #succes-btn {
+        background-color: #f0981994;
+        font-size: 10vw;
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-height: 600px) and (min-width:500px) {
+
+
+    thead {
+        margin: auto;
+        text-align: center;
+        width: auto;
+    }
+    .homepage{
+        cursor: pointer;
+        font-size: 12vh;
+        background-color: rgb(76 168 184);
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        width: 15vh;
+        height: 15vh;
+        padding: 2% 2%;
+        display: flex;
+        color: white;
+    }
+
+    tbody {
+        width: auto;
+        overflow: auto;
+
+    }
+
+    #rank {
+        font-style: italic;
+        color: #ff9900;
+        display: inline-block;
+    }
+
+    #rankImage {
+        display: inline-block;
+        width: 20vh;
+        height: 20vh;
+        margin-left: 20vh;
+        border-radius: 50%;
+        border: 3px solid #ff9900;
+        box-shadow: 0 0 10vh #ff9900;
+        vertical-align: middle; /* Ajout de la propriété vertical-align */
+    }
+
+    .progress-bar-inner {
+        text-align: center;
+        width: 0%;
+    }
+
+    #games-played, #wins, #losses, #draws {
+        font-weight: bold;
+        color: #ff9900;
+        text-shadow: 1vh 1vh #ffffff;
+    }
+
+    #winrate {
+        font-weight: bold;
+        color: #ff0000;
+        text-shadow: 1vh 1vh #ffffff;
+    }
+
+    .homepage:hover {
+        cursor: pointer;
+    }
+
+    .shape {
+        z-index: -2;
+    }
+
+    .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .image-background {
+        background-repeat: no-repeat;
+        background-size: 15%;
+        background-position: bottom left;
+        height: 130vh;
+        border-radius: 50%;
+    }
+
+    body {
+        background-color: #f6ffd2;
+        font-family: retro;
+        height: 100%;
+        font-size: 5vh;
+        zoom: 0.6;
+        overflow-y: hidden;
+    }
+    .parentMenu{
+        height: 70%;
+    }
+    .titleText{
+        height: 10%;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 10vh;
+        text-shadow: 2px 2px #ff9900;
+    }
+
+    .home {
+        background-color: #fffbe3d1;
+        border-top: 3px solid #99a37f36;
+        border-right: 3px solid #99a37f36;
+        border-bottom: 3px solid #99a37f36;
+        font-size: 30px;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    h2, h3, h4 {
+        margin-left: 20px;
+        font-size: 30px;
+        color: #ff9900;
+    }
+
+    p {
+        font-size: 7vh;
+        margin-left: 40px;
+    }
+
+    #username {
+        font-weight: bold;
+        color: #000000;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    th, td {
+        padding: 4vw;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .progress-bar {
+        height: 20px;
+        background-color: #ddd;
+        border-radius: 5px;
+        display: inline-block;
+        width: 50%;
+        padding: 1vh;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .progress-bar-inner {
+        height: 100%;
+        background-color: #4CAF50;
+        text-align: right;
+        padding-right: 10px;
+        line-height: 20px;
+        transition: width 0.5s ease;
+    }
+
+    h5 {
+        font-size: 20px;
+        color: #ff9900;
+        text-shadow: 1px 1px #ffffff;
+    }
+
+    #succes {
+        display: none;
+        width: 100%;
+        float: none;
+        height: auto;
+        margin: 0 auto;
+        flex-direction: column;
+        background-color: #fe9e1363;
+        align-items: center;
+    }
+    .bigWrapper{
+        height: 90%;
+    }
+
+    table {
+        float: none;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    #stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: #ff8af278;
+    }
+    .statsInterior{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        overflow: auto;
+    }
+
+    #success-container {
+        margin-top: 50px;
+    }
+
+    #stats-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .btn{
+        border-top: 3px solid #99a37f36;
+        display: flex;
+        justify-content: flex-start;
+        transition: width 0.3s;
+        width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        height: 12%;
+        font-size: 15vh;
+        flex-wrap: wrap;
+    }
+
+    .btn button {
+        flex-basis: 50%;
+        font-family: retro;
+    }
+
+    #stats-btn {
+        background-color: #dc3fca96;
+        font-size: 8vh;
+
+    }
+
+    #succes-btn {
+        background-color: #f0981994;
+        font-size: 10vh;
+
+    }
+
+
+
+
+
+
+}
+
+

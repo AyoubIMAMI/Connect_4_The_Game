@@ -1,6 +1,6 @@
 @font-face {
     font-family: retro;
-    src: url(../../font/retro.ttf);
+    src: url(../../ressources/font/retro.ttf);
 }
 @media only screen and (max-width: 600px) {
 html, body {

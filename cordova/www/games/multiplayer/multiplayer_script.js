@@ -18,7 +18,7 @@ import {winVibration, loseVibration, popupVibration, timerVibration, errorVibrat
 
 
 
-let ambient = new Audio("../../audio/audio.wav");
+let ambient = new Audio("../../audio/music.wav");
 ambient.loop = true;
 ambient.play();
 

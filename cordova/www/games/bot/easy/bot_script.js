@@ -25,7 +25,7 @@ import {winVibration, loseVibration} from "../../../plugins/vibration.js";
 
 // If not logged in, redirected to the login page
 notLoggedRedirection();
-let ambient = new Audio("../../../audio/audio.wav");
+let ambient = new Audio("../../../audio/music.wav");
 ambient.loop = true;
 ambient.play();
 var roomName;

@@ -30,7 +30,7 @@ let counter = 0;
 export let itsMyTurn;
 const mapColor = new Map();
 let startInversered=false;
-let ambient = new Audio("../../../audio/audio.wav");
+let ambient = new Audio("../../../audio/music.wav");
 ambient.loop = true;
 ambient.play();
 

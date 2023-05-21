@@ -15,7 +15,7 @@ import {winVibration} from "../../plugins/vibration.js";
 let counter = 0;
 let gameOver = false;
 const mapColor = new Map();
-let ambient = new Audio("../../audio/audio.wav");
+let ambient = new Audio("../../audio/music.wav");
 ambient.loop = true;
 ambient.play();
 mapColor.set('Yellow','#cee86bcc');
