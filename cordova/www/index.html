@@ -40,14 +40,18 @@
 
         <div id="log">
             <div class="body">
-                <input id="usernameLoginInput" type="text" placeholder="Enter Username" name="log_name" class="inp" maxlength="10" required>
-                <input id="passwordLoginInput" type="password" placeholder="Enter Password" name="log_pswd" class="inp" required>
+                <label for="usernameLoginInput"></label><input id="usernameLoginInput" type="text"
+                                                               placeholder="Enter Username" name="log_name" class="inp"
+                                                               maxlength="10" required>
+                <label for="passwordLoginInput"></label><input id="passwordLoginInput" type="password"
+                                                               placeholder="Enter Password" name="log_password"
+                                                               class="inp" required>
                 <div id="retrieveSession">
                     <a>It looks like you were connected before. Continue as:</a>
                     <button id="usernameToContinueWith"></button>
                 </div>
                 <br>
-                <div id = "errorMessageLogin" style="color:red"></div>
+                <div id="errorMessageLogin" style="color:red"></div>
             </div>
             <br>
             <button class="button" id="loginButton">Login</button>
@@ -55,11 +59,19 @@
 
         <div id="reg">
             <div class="body">
-                <input id="usernameRegisterInput" type="text" placeholder="Username - 10 characters maximum" name="reg_name" class="inp" maxlength="10" required>
-                <input id="mailRegisterInput" type="email" placeholder="e-mail@example.com" name="reg_email" class="inp" required>
-                <input id="passwordRegisterInput" type="password" placeholder="Password" name="reg_pswd" class="inp" required>
-                <input id="confirmPasswordRegisterInput" type="password" placeholder="Confirm password" name="reg_pswd2" class="inp" required>
-                <div id = "errorMessage" style="display:none; color: red"> </div>
+                <label for="usernameRegisterInput"></label><input id="usernameRegisterInput" type="text"
+                                                                  placeholder="Username - 10 characters maximum"
+                                                                  name="reg_name" class="inp" maxlength="10" required>
+                <label for="mailRegisterInput"></label><input id="mailRegisterInput" type="email"
+                                                              placeholder="e-mail@example.com" name="reg_email"
+                                                              class="inp" required>
+                <label for="passwordRegisterInput"></label><input id="passwordRegisterInput" type="password"
+                                                                  placeholder="Password" name="reg_password" class="inp"
+                                                                  required>
+                <label for="confirmPasswordRegisterInput"></label><input id="confirmPasswordRegisterInput"
+                                                                         type="password" placeholder="Confirm password"
+                                                                         name="reg_password2" class="inp" required>
+                <div id="errorMessage" style="display:none; color: red"></div>
             </div>
             <button class="button" id="registerButton">Register</button>
         </div>
@@ -74,8 +86,8 @@
     <div class="shape"></div>
 </div>
 </body>
+</html>
 
 <script type="module" src="loginRegister/loginRegister.js"></script>
 <script type="module" src="plugins/connection.js"></script>
 <script src="cordova.js"></script>
-</html>

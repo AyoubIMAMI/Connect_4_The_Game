@@ -2,6 +2,7 @@
     font-family: retro;
     src: url(../ressources/font/retro.ttf);
 }
+
 @media only screen and (min-width: 821px) and (min-height: 600px) {
     h1 {
         text-align: center;
@@ -12,7 +13,7 @@
         background-color: #f6ffd2;
         zoom: 0.7;
         overflow: hidden;
-        font-family: retro;
+        font-family: retro, serif;
     }
 
     .top {
@@ -102,7 +103,8 @@
         margin: 0 auto;
         text-align: center;
     }
-    #retrieveSession{
+
+    #retrieveSession {
         display: none;
         flex-direction: column;
     }
@@ -177,15 +179,7 @@
 }
 
 
-
-
-
-
-
-
-
-
-@media only screen and (max-width:820px){
+@media only screen and (max-width: 820px) {
     h1 {
         text-align: center;
         color: red;
@@ -194,7 +188,7 @@
     body {
         background-color: #f6ffd2;
         zoom: 0.7;
-        font-family: retro;
+        font-family: retro, serif;
     }
 
     .top {
@@ -272,7 +266,8 @@
         font-size: 4vw;
         text-align: center;
     }
-    .body{
+
+    .body {
         height: 100%;
     }
 
@@ -282,13 +277,12 @@
         text-align: center;
     }
 
-    #retrieveSession{
+    #retrieveSession {
         display: none;
         flex-direction: column;
         height: 20%;
         margin-top: 3vh;
     }
-
 
 
     #usernameToContinueWith {
@@ -339,44 +333,47 @@
         right: 30%;
         bottom: 15%;
     }
-    #usernameLoginInput #passwordLoginInput{
+
+    #usernameLoginInput #passwordLoginInput {
         margin: auto;
         height: 15%;
     }
-    #confirmPasswordRegisterInput #passwordRegisterInput #usernameRegisterInput #mailRegisterInput{
+
+    #confirmPasswordRegisterInput #passwordRegisterInput #usernameRegisterInput #mailRegisterInput {
         margin: auto;
         height: 10%;
     }
 
-    #errorMessage{
+    #errorMessage {
         color: red;
     }
-    .littleNames{
+
+    .littleNames {
         margin: auto;
         font-size: 6vw;
     }
-    body{
+
+    body {
         margin: 0;
         height: 100%;
         width: 100%;
         display: flex;
     }
-    html{
+
+    html {
         height: 100%;
         width: 100%;
     }
-    .Wrapper{
+
+    .Wrapper {
         height: 70%;
         width: 80%;
-        margin: auto;
-        margin-top: 5%;
+        margin: 5% auto auto;
     }
 }
 
 
-
-
-@media only screen and (max-height: 600px) and (min-width:500px){
+@media only screen and (max-height: 600px) and (min-width: 500px) {
     h1 {
         text-align: center;
         color: red;
@@ -385,7 +382,7 @@
     body {
         background-color: #f6ffd2;
         zoom: 0.7;
-        font-family: retro;
+        font-family: retro, serif;
     }
 
     .top {
@@ -462,7 +459,8 @@
         font-size: 4vh;
         text-align: center;
     }
-    .body{
+
+    .body {
         height: 100%;
     }
 
@@ -472,13 +470,12 @@
         text-align: center;
     }
 
-    #retrieveSession{
+    #retrieveSession {
         display: none;
         flex-direction: column;
         height: 20%;
         margin-top: 3vh;
     }
-
 
 
     #usernameToContinueWith {
@@ -488,7 +485,7 @@
         border: 1px solid #ccc;
         background-color: #8dee8d;
         padding: 1vh;
-        font-size: calc( 2vh + 2vw );
+        font-size: calc(2vh + 2vw);
     }
 
 
@@ -530,36 +527,41 @@
         right: 30%;
         bottom: 15%;
     }
-    #usernameLoginInput #passwordLoginInput{
+
+    #usernameLoginInput #passwordLoginInput {
         margin: auto;
         height: 15%;
     }
-    #confirmPasswordRegisterInput #passwordRegisterInput #usernameRegisterInput #mailRegisterInput{
+
+    #confirmPasswordRegisterInput #passwordRegisterInput #usernameRegisterInput #mailRegisterInput {
         margin: auto;
         height: 10%;
     }
 
-    #errorMessage{
+    #errorMessage {
         color: red;
     }
-    .littleNames{
+
+    .littleNames {
         margin: auto;
     }
-    body{
+
+    body {
         margin: 0;
         height: 100%;
         width: 100%;
         display: flex;
     }
-    html{
+
+    html {
         height: 100%;
         width: 100%;
     }
-    .Wrapper{
+
+    .Wrapper {
         height: 70%;
         width: 80%;
-        margin: auto;
-        margin-top: 0;
+        margin: 0 auto auto;
     }
 }
 

@@ -10,10 +10,6 @@ import {errorVibration, registerVibration} from "../plugins/vibration.js";
  * he can retrieve his session without connecting again.
  *
  * There are securities on the inputs and on the password
- *
- * @author Weel BEN AISSA
- * @author Mourad KARRAKCHOU
- * @author Ayoub IMAMI
  */
 
 // Retrieve session if not previously logged out
@@ -28,6 +24,7 @@ window.addEventListener("load", function () {
         })
     }
 });
+
 function onDeviceReady() {
     console.log(navigator.vibrate);
     console.log("Device is ready!");
@@ -76,7 +73,7 @@ document.getElementById("passwordLoginInput").addEventListener("keydown", async 
  */
 async function login() {
     const user = document.getElementsByName("log_name")[0].value;
-    const password = hash(document.getElementsByName("log_pswd")[0].value);
+    const password = hash(document.getElementsByName("log_password")[0].value);
 
     // Security to avoid blank inputs
     if (user === "" || password === "") {
@@ -150,8 +147,8 @@ document.getElementById("confirmPasswordRegisterInput").addEventListener("keydow
 async function register() {
     const name = document.getElementsByName("reg_name")[0].value;
     const mail = document.getElementsByName("reg_email")[0].value;
-    const clearPassword = document.getElementsByName("reg_pswd")[0].value;
-    const confirmClearPassword = document.getElementsByName("reg_pswd2")[0].value;
+    const clearPassword = document.getElementsByName("reg_password")[0].value;
+    const confirmClearPassword = document.getElementsByName("reg_password2")[0].value;
 
     // Security to avoid blank inputs
     if (name === "" || mail === "" || clearPassword === "" || confirmClearPassword === "") {
