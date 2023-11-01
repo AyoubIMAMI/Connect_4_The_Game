@@ -2,7 +2,7 @@ const {MongoClient} = require("mongodb");
 const {response} = require("express");
 let roomInSearch=null;
 const mapGames= new Map();
-const url = 'mongodb://admin:admin@mongodb/admin?directConnection=true';
+const url = 'mongodb://admin:b0ttle0fW4t3r@mongodb/admin?directConnection=true';
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const ObjectID = require('mongodb').ObjectId;
 
@@ -25,7 +25,7 @@ let secondPlayerName;
 function setUpSockets(io){
     const MongoClient = require('mongodb').MongoClient;
 
-    const url = 'mongodb://admin:admin@mongodb/admin?directConnection=true';
+    const url = 'mongodb://admin:b0ttle0fW4t3r@mongodb/admin?directConnection=true';
     const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
     /**

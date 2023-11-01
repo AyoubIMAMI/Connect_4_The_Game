@@ -50,10 +50,12 @@ var define;
 
     require = function (id) {
         if (!modules[id]) {
-            throw new Error('module ' + id + ' not found');
+            console.log('module ' + id + ' not found');
+            return;
         } else if (id in inProgressModules) {
             var cycle = requireStack.slice(inProgressModules[id]).join('->') + '->' + id;
-            throw new Error('Cycle in require graph: ' + cycle);
+            console.log('Cycle in require graph: ' + cycle);
+            return;
         }
         if (modules[id].factory) {
             try {
@@ -70,7 +72,8 @@ var define;
 
     define = function (id, factory) {
         if (Object.prototype.hasOwnProperty.call(modules, id)) {
-            throw new Error('module ' + id + ' already defined');
+            console.log('module ' + id + ' already defined');
+            return;
         }
 
         modules[id] = {
@@ -98,7 +101,8 @@ define("cordova", function(require, exports, module) {
 // Workaround for Windows 10 in hosted environment case
 // http://www.w3.org/html/wg/drafts/html/master/browsers.html#named-access-on-the-window-object
 if (window.cordova && !(window.cordova instanceof HTMLElement)) {
-    throw new Error('cordova already defined');
+    console.log('cordova already defined');
+    return;
 }
 
 var channel = require('cordova/channel');
@@ -721,7 +725,8 @@ var channel = {
         };
         for (var j = 0; j < len; j++) {
             if (c[j].state === 0) {
-                throw Error('Can only use join with sticky channels.');
+                console.log('Can only use join with sticky channels.');
+                return;
             }
             c[j].subscribe(f);
         }
@@ -771,10 +776,11 @@ var channel = {
 
 function checkSubscriptionArgument (argument) {
     if (typeof argument !== 'function' && typeof argument.handleEvent !== 'function') {
-        throw new Error(
+        console.log(
             'Must provide a function or an EventListener object ' +
                 'implementing the handleEvent interface.'
         );
+        return;
     }
 }
 
@@ -965,7 +971,8 @@ function androidExec (success, fail, service, action, args) {
         // and fire them once we get a secret. For now, I don't think
         // it's possible for exec() to be called since plugins are parsed but
         // not run until until after onNativeReady.
-        throw new Error('exec() called without bridgeSecret');
+        console.log('exec() called without bridgeSecret');
+        return;
     }
     // Set default bridge modes if they have not already been set.
     // By default, we use the failsafe, since addJavascriptInterface breaks too often
@@ -1324,7 +1331,8 @@ exports.reset = function () {
 
 function addEntry (strategy, moduleName, symbolPath, opt_deprecationMessage) {
     if (!(moduleName in moduleMap)) {
-        throw new Error('Module ' + moduleName + ' does not exist.');
+        console.log('Module ' + moduleName + ' does not exist.');
+        return;
     }
     symbolList.push(strategy, moduleName, symbolPath);
     if (opt_deprecationMessage) {
@@ -1507,7 +1515,8 @@ function onMessageFromNative (msg) {
         cordova.fireDocumentEvent(action, msg);
         break;
     default:
-        throw new Error('Unknown event action ' + action);
+        console.log('Unknown event action ' + action);
+        return;
     }
 }
 

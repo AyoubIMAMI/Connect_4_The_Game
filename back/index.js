@@ -49,27 +49,43 @@ const io = new Server(server, {
 
 io.on('connection',socket => {
     socket.on('joinRoom', (roomName) => {
-        socket.join(roomName);
-        io.to(roomName).emit('updateRoom', roomName);
+        try {
+            socket.join(roomName);
+            io.to(roomName).emit('updateRoom', roomName);
+        } catch (error) {
+            console.log(error);
+        }
     });
     console.log("Connected");
 
     socket.on('play',(state) => {
-        let gameState = JSON.parse(state);
-        io.to(gameState.id).emit('doMove',JSON.stringify(aiQuery.computeMove(gameState)));
+        try {
+            let gameState = JSON.parse(state);
+            io.to(gameState.id).emit('doMove',JSON.stringify(aiQuery.computeMove(gameState)));
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     socket.on('playAdv',async (state) => {
-        let gameState = JSON.parse(state);
+        try {
+            let gameState = JSON.parse(state);
 
-        let next = await aiAdvancedQuery.TestNextMove(gameState.pos);
-        console.log("gamestate id "+gameState.id);
-        console.log(next);
-        io.to(gameState.id).emit('doMove', JSON.stringify(next));
+            let next = await aiAdvancedQuery.TestNextMove(gameState.pos);
+            console.log("gamestate id "+gameState.id);
+            console.log(next);
+            io.to(gameState.id).emit('doMove', JSON.stringify(next));
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     socket.on('initAdv',(initState) => {
-        aiAdvancedQuery.setup(initState);
+        try {
+            aiAdvancedQuery.setup(initState);
+        } catch (error) {
+            console.log(error);
+        }
     });
 })
 

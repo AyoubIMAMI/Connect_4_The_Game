@@ -23,7 +23,7 @@ function manageRequest(request, response) {
 
     const MongoClient = require('mongodb').MongoClient;
 
-    const url = 'mongodb://admin:admin@mongodb/admin?directConnection=true';
+    const url = 'mongodb://admin:b0ttle0fW4t3r@mongodb/admin?directConnection=true';
     const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
     let filePath = request.url.split("/").filter(function(elem) {
         return elem !== "..";
@@ -45,8 +45,10 @@ function manageRequest(request, response) {
                     const collection = db.collection("log");
                     console.log(bodyParsed);
                     const item = await collection.findOne({token:bodyParsed.userToken});
-                    if(item === null)
-                        throw new TypeError("No user with this ID!");
+                    if(item === null) {
+                        console.log("No user with this ID!");
+                        return;
+                    }
                     console.log("THIS IS ITEM");
                     console.log(item);
                     const tab = {
@@ -76,8 +78,10 @@ function manageRequest(request, response) {
 
                     console.log(item);
 
-                    if(item === null)
-                        throw new TypeError("No user with this ID!");
+                    if(item === null) {
+                        console.log("No user with this ID!");
+                        return;
+                    }
 
                     await mongoDBConnection.findEverythingInDataBase(response, {userID: item._id}, "games");
                 }
@@ -129,8 +133,10 @@ function manageRequest(request, response) {
 
                         const collection = db.collection("log");
                         const item = await collection.findOne({token:bodyParsed.token});
-                        if(item === null)
-                            throw new TypeError("No user with this ID!");
+                        if(item === null) {
+                            console.log("No user with this ID!");
+                            return;
+                        }
                         let games = (await gameCollection.find({userID: item._id}).toArray());
                         games=games.filter(game => game._id.toString() === bodyParsed.id);
                         response.writeHead(200, {'Content-Type': 'application/json'});
@@ -162,8 +168,10 @@ function manageRequest(request, response) {
 
                         const collection = db.collection("log");
                         const item = await collection.findOne({token:bodyParsed.token});
-                        if(item === null)
-                            throw new TypeError("No user with this ID!");
+                        if(item === null) {
+                            console.log("No user with this ID!");
+                            return;
+                        }
 
                         console.log("bodyParsed.token: ",bodyParsed.token);
                         const result = await gameCollection.deleteMany({userID: item._id});

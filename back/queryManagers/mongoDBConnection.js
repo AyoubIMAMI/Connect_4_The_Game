@@ -1,7 +1,7 @@
 
 const MongoClient = require('mongodb').MongoClient;
 //url to connect to the database
-const url = 'mongodb://admin:admin@mongodb/admin?directConnection=true';
+const url = 'mongodb://admin:b0ttle0fW4t3r@mongodb/admin?directConnection=true';
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 /**
@@ -22,8 +22,10 @@ async function loginInDataBase(response,currentUser,collectionName) {
         const collection = db.collection(collectionName);
         console.log(currentUser);
         const item = await collection.findOne(currentUser);
-        if(item === null)
-            throw new TypeError("Invalid credentials!");
+        if(item === null) {
+            console.log("Invalid credentials!");
+            return;
+        }
 
         console.log("ITEM FROM MONGODB:" + item);
         const token = jwt.sign({userId: item._id, name: item.name}, secret);
@@ -34,8 +36,10 @@ async function loginInDataBase(response,currentUser,collectionName) {
         );
         let newItem = await collection.findOne({token:token});
         console.log("NEW ID ")
-        if(newItem === null)
-            throw new TypeError("No user with this ID!");
+        if(newItem === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         response.writeHead(200, {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token});
         response.end(JSON.stringify(newItem));
         console.log("THIS IS THE TOKEN:"+token);
@@ -139,8 +143,10 @@ async function  friendRequest(response, requestFrom, valueToInsert) {
 
         // finding the user who does the request
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         let userRequest = user.requestSent;
         let userFriends = user.friends;
         let userRequestReceived = user.requestReceived;
@@ -193,8 +199,10 @@ async function retrieveFriendList(response, requestFrom) {
 
         // finding the user who does the request
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         let userFriends = user.friends;
 
         // answer the data
@@ -228,8 +236,10 @@ async function retrieveAllStats(response, requestFrom,friendName){
 
         let user;
         let userRequest =  await collection.findOne({token: requestFrom});
-        if(userRequest === null)
-            throw new TypeError("No user with this ID!");
+        if(userRequest === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         if(friendName === userRequest.username){
               user = userRequest;
         }else{
@@ -277,8 +287,10 @@ async function removeFriend(response, requestFrom, friendToRemove) {
 
         // finding the user who does the request
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         const friend = await collection.findOne({username: friendToRemove});
         let userFriends = user.friends;
         let friendFriends = friend.friends;
@@ -332,8 +344,10 @@ async function retrieveFriendRequest(response, requestFrom) {
 
         // finding the user and its received friends requests
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         let userFriendRequests = user.requestReceived;
 
         // answer the data
@@ -367,8 +381,10 @@ async function  acceptFriendRequest(response, requestFrom, friendToAccept) {
 
         // finding the user and the friend
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+            return;
+        }
         const friend = await collection.findOne({username: friendToAccept});
 
         // adding each other as friend
@@ -432,8 +448,9 @@ async function  declineFriendRequest(response, requestFrom, friendToDecline) {
 
         // finding the user and the friend
         const user = await collection.findOne({token: requestFrom});
-        if(user === null)
-            throw new TypeError("No user with this ID!");
+        if(user === null) {
+            console.log("No user with this ID!");
+        }
         const friend = await collection.findOne({username: friendToDecline});
 
         // removing the received and sent requests
